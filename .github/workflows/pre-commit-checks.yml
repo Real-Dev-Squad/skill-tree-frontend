@@ -2,10 +2,10 @@ name: Pre-commit checks
 
 on:
     pull_request:
-        branches: ['*']
+        branches: ["*"]
 
 jobs:
-    Lint_Check:
+    pre-commit-checks:
         runs-on: ubuntu-latest
 
         steps:
