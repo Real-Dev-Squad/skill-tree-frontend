@@ -1,6 +1,5 @@
 import { ReactNode } from "react";
 import Head from "next/head";
-import "@/styles/global.css";
 
 type LayoutProps = {
     title: string;
