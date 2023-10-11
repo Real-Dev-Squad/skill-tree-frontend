@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import DropDown from "@/components/DropDown";
+import { DropDown } from "@/components/DropDown";
 import Layout from "@/components/Layout";
 import SearchBox from "@/components/SearchBox";
 import { BsHandThumbsUp, BsHandThumbsDown } from "react-icons/bs";
