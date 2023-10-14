@@ -6,7 +6,22 @@ module.exports = {
         "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
     ],
     theme: {
-        extend: {},
+        extend: {
+            textColor: {
+                black: "#020617",
+                blueBerry: "#3B82F6",
+                magicRed: "#F43F5E",
+                cadetGrey: "#94A3B8",
+                slatGrey: "#64748B",
+            },
+            backgroundColor: {
+                aliceBlue: "#EFF6FF",
+                lavendarBlush: "#FFF1F2",
+            },
+            borderColor: {
+                azuresihWhite: "#E2E8F0",
+            },
+        },
         colors: {
             green: "#059669",
             red: {
