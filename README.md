@@ -7,8 +7,10 @@ https://stag-skill-tree.vercel.app/
 
 ## Tech Stack:
 
-- Reactjs
+- NextJs v13.4.4 (Reactjs)
 - react-query
+- Jest
+- Msw
 
 ## Setup and running locally
 
