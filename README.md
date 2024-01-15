@@ -7,15 +7,16 @@ https://stag-skill-tree.vercel.app/
 
 ## Tech Stack:
 
-- NextJs v13.4.4 (Reactjs)
-- react-query
-- Jest
-- Msw
+- [NextJs v13.4.4 (Reactjs)](https://nextjs.org/)
+- [react-query](https://tanstack.com/query/v3/)
+- [Jest](https://jestjs.io/)
+- [Msw](https://mswjs.io/)
 
 ## Setup and running locally
 
-### Pre Requisite
-- Install yarn 
+### Prerequisites
+- [Node.js](https://nodejs.org/en/download)
+- Yarn 
 
 ### Setup
 - Install local dependencies
