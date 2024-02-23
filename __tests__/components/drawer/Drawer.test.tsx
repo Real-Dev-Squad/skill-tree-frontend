@@ -3,34 +3,31 @@ import { fireEvent, render } from "@testing-library/react";
 import Drawer from "@/components/drawer/Drawer";
 
 describe("Drawer", () => {
-    test("when open render drawer and overlay", () => {
+    test("when open render drawer ", () => {
         const { getByRole } = render(<Drawer open={true} onClose={() => {}} />);
         const drawer = getByRole("drawer");
-        const overlay = getByRole("overlay");
 
         expect(drawer).toBeInTheDocument();
-        expect(overlay).toBeInTheDocument();
+        expect(drawer).toHaveClass("!translate-x-0");
     });
 
-    test("when close do not renders drawer and overlay", () => {
+    test("when close do not renders drawer ", () => {
         const { queryByRole } = render(<Drawer open={false} onClose={() => {}} />);
         const drawer = queryByRole("drawer");
-        const overlay = queryByRole("overlay");
 
-        expect(drawer).not.toBeInTheDocument();
-        expect(overlay).not.toBeInTheDocument();
+        expect(drawer).toBeInTheDocument();
+        expect(drawer).toHaveClass("translate-x-full");
     });
 
     test("handle onClose event", () => {
         const handleClose = jest.fn();
-        const { queryByRole, getByRole } = render(<Drawer open={true} onClose={handleClose} />);
+        const { queryByRole, getByTestId } = render(<Drawer open={true} onClose={handleClose} />);
         const drawer = queryByRole("drawer");
-        const overlay = getByRole("overlay");
+        const closeButton = getByTestId("close-button");
 
         expect(drawer).toBeInTheDocument();
-        expect(overlay).toBeInTheDocument();
 
-        fireEvent.click(overlay);
+        fireEvent.click(closeButton);
 
         expect(handleClose).toHaveBeenCalledTimes(1);
     });

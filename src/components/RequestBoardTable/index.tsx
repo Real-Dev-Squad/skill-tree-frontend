@@ -4,12 +4,17 @@ import { requestBoardData } from "../../../__mocks__/requestBoardData";
 import { SKILL_LABEL_COLOR_MAPPING } from "@/constants/request-board";
 import { useGetEndorsements } from "@/services/endorsements";
 
-export default function RequestBoardTable() {
+export default function RequestBoardTable({ openDetails }: { openDetails: () => void }) {
     const { data: endorsements, isLoading } = useGetEndorsements();
     console.log(endorsements, isLoading); //will remove this when BE APIs are ready
 
     const renderBoardDetailsRow = requestBoardData.map((skillItem, index) => (
-        <BoardDetailsRow key={skillItem.id} {...skillItem} colorScheme={SKILL_LABEL_COLOR_MAPPING[index % 6]} />
+        <BoardDetailsRow
+            key={skillItem.id}
+            {...skillItem}
+            colorScheme={SKILL_LABEL_COLOR_MAPPING[index % 6]}
+            openDetails={openDetails}
+        />
     ));
     return (
         <div>
