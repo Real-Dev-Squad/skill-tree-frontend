@@ -14,17 +14,16 @@ import Layout from "@/components/Layout";
 export default function Home() {
     const scrollDirection = useScrollDirection();
 
-    const [open, setOpen] = useState(false);
+    const [open, setOpen] = useState<Boolean>(false);
 
-    const handleOpen = () => {
-        setOpen((prev) => !prev);
+    const handleSlideover = (value: Boolean) => {
+        setOpen(value);
     };
 
     return (
         <Layout title="Request board">
             <main className="my-20">
-                <Button onClick={handleOpen}>Open Drawer</Button>
-                <EndorsementDetailsSlideOver endorsementId="abc2" onClose={handleOpen} open={open} />
+                <EndorsementDetailsSlideOver endorsementId="abc2" onClose={() => handleSlideover(false)} open={open} />
 
                 <div className="lg:bg-white rounded-2xl lg:shadow-[0px_0px_6px_rgba(0,0,0,0.04)] w-full lg:w-11/12 max-w-screen-xl mx-auto lg:p-12">
                     <Wrapper styles="lg:hidden">
@@ -43,7 +42,7 @@ export default function Home() {
                         </div>
                     </Wrapper>
                     <Wrapper>
-                        <RequestBoardTable />
+                        <RequestBoardTable openDetails={() => handleSlideover(true)} />
                     </Wrapper>
                     <Wrapper
                         styles={`${

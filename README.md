@@ -1,1 +1,30 @@
-# skill-tree-frontend
+# Frontend Repo for Skill-tree 
+
+Display the skills a user has and the endorsements created for adding new skills to users profile.
+
+## Staging Deployed Link 
+https://stag-skill-tree.vercel.app/
+
+## Tech Stack:
+
+- [NextJs v13.4.4 (Reactjs)](https://nextjs.org/)
+- [react-query](https://tanstack.com/query/v3/)
+- [Jest](https://jestjs.io/)
+- [Msw](https://mswjs.io/)
+
+## Setup and running locally
+
+### Prerequisites
+- [Node.js](https://nodejs.org/en/download)
+- Yarn 
+
+### Setup
+- Install local dependencies
+```
+yarn
+```
+- Run development command
+```
+yarn dev
+```
+

@@ -18,18 +18,21 @@ type BoardDetailsRowProps = {
     skill: string;
     colorScheme: string;
     votes: VotesTypes[];
+    openDetails: () => void;
 };
 
-export default function BoardDetailsRow({ name, skill, votes, colorScheme }: BoardDetailsRowProps) {
+export default function BoardDetailsRow({ name, skill, votes, colorScheme, openDetails }: BoardDetailsRowProps) {
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     return (
         <div className="grid grid-cols-[minmax(0,_1fr)_minmax(0,_1fr)] lg:grid-cols-[35%_25%_minmax(0,_1fr)] lg:px-4 lg:py-4 gap-4 lg:gap-0 border-b lg:border-0 border-gray-400 pb-8">
-            <div>
-                <p className="capitalize text-2xl whitespace-nowrap w-[80%] text-ellipsis overflow-hidden lg:text-base font-semibold text-black-dark">
-                    {name}
-                </p>
-            </div>
+            <p
+                className="capitalize text-2xl whitespace-nowrap w-[80%] text-ellipsis overflow-hidden lg:text-base font-semibold text-black-dark cursor-pointer hover:text-blueBerry"
+                onClick={openDetails}
+            >
+                {name}
+            </p>
+
             <div className="ml-auto lg:m-0">
                 <SkillLabel title={skill} colorScheme={colorScheme} />
             </div>

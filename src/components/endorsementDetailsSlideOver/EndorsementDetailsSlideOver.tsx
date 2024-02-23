@@ -9,7 +9,7 @@ import Button from "@/components/Button";
 
 type EndorsementDetailsSlideOverProps = {
     endorsementId: string;
-    open: boolean;
+    open: Boolean;
     onClose: () => void;
 };
 
@@ -19,7 +19,7 @@ const EndorsementDetailsSlideOver = ({ endorsementId, open, onClose }: Endorseme
     return (
         <Drawer open={open} onClose={onClose}>
             <div className="p-6 pt-24 bg-yellow-100">
-                <h1 className="mb-4 text-4xl font-semibold lg:text-5xl">{data?.title}</h1>
+                <h1 className="mb-4 text-4xl font-semibold lg:text-5xl cursor-pointer">{data?.title}</h1>
                 <h3 className="mb-10 text-2xl font-semibold">{data?.date}</h3>
                 <h3 className="mb-1 text-2xl font-medium">Skills: {data?.skills}</h3>
                 <h6 className="mb-4 text-xl text-gray-700">Endorsers: {data?.endorsers.join(", ")}</h6>
@@ -36,7 +36,7 @@ const EndorsementDetailsSlideOver = ({ endorsementId, open, onClose }: Endorseme
                 </ul>
             </div>
 
-            <div className="fixed bottom-0 right-0 grid grid-cols-2 justify-between w-3/4 gap-4 px-6 py-4 bg-blue-100 border border-blue-300 border-solid sm:w-1/2 lg:w-1/3">
+            <div className="sticky bottom-0 right-0 grid grid-cols-2 justify-between w-full gap-4 px-6 py-4 bg-blue-100 border border-blue-300 border-solid ">
                 <Button variant="success" roundness="medium">
                     <IoCheckmarkSharp />
                     Approve
