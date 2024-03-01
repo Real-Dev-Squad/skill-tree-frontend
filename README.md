@@ -17,6 +17,12 @@ https://stag-skill-tree.vercel.app/
 ### Prerequisites
 - [Node.js](https://nodejs.org/en/download)
 - Yarn 
+- Volta
+
+[Why Volta?](https://docs.volta.sh/guide/#why-volta)
+
+To install Volta, please follow the [process](https://docs.volta.sh/guide/getting-started)
+
 
 ### Setup
 - Install local dependencies
@@ -27,4 +33,4 @@ yarn
 ```
 yarn dev
 ```
-Firstly setup [Volta](https://docs.volta.sh/guide/getting-started) | [Why Volta?](https://docs.volta.sh/guide/#why-volta)
+
