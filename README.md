@@ -27,4 +27,4 @@ yarn
 ```
 yarn dev
 ```
-
+Firstly setup [Volta](https://docs.volta.sh/guide/getting-started) | [Why Volta?](https://docs.volta.sh/guide/#why-volta)
