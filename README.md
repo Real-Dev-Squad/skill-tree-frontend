@@ -19,9 +19,9 @@ https://stag-skill-tree.vercel.app/
 - Yarn 
 - Volta
 
-- Follow this [Guide](https://docs.volta.sh/guide/#why-volta)
+[Why Volta?](https://docs.volta.sh/guide/#why-volta)
 
-To install Volta, please follow the [process](https://docs.volta.sh/guide/getting-started)
+To install Volta, please follow this [Guide](https://docs.volta.sh/guide/getting-started)
 
 
 ### Setup
