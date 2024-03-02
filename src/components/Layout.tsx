@@ -1,5 +1,6 @@
 import { ReactNode } from "react";
 import Head from "next/head";
+import Navbar from "./common/Navbar/Navbar";
 
 type LayoutProps = {
     title: string;
@@ -11,6 +12,7 @@ export default function Layout({ title, children }: LayoutProps) {
             <Head>
                 <title>{title}</title>
             </Head>
+            <Navbar />
             {children}
         </div>
     );
