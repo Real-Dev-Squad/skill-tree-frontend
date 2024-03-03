@@ -1,4 +1,4 @@
-# Frontend Repo for Skill-tree 
+# Frontend for Skill-tree 
 
 Display the skills a user has and the endorsements created for adding new skills to users profile.
 
