@@ -35,7 +35,7 @@ describe("useGetSelfUser", () => {
         await waitFor(() => expect(result.current.isSuccess).toBe(true));
 
         expect(result.current.data).toBeDefined();
-        expect(result.current.data).toStrictEqual(selfUser);
+        expect(result.current.data.data).toStrictEqual(selfUser);
     });
 
     it("should return isError true and return unauthorized error message", async () => {
@@ -45,9 +45,9 @@ describe("useGetSelfUser", () => {
             })
         );
         const { result } = renderHook(() => useGetSelfUser(), { wrapper: createWrapper() });
-        waitFor(() => expect(result.current.isSuccess).toBe(true));
+        await waitFor(() => expect(result.current.isLoading).toBe(false));
         // console.log(result.current)
-        // expect(result.current).toBeDefined();
-        expect(result.current.data).toStrictEqual(unauthorizedResponse);
+        expect(result.current.error?.response?.data).toStrictEqual(unauthorizedResponse);
+        // expect(result.current.data).toStrictEqual(unauthorizedResponse);
     });
 });
