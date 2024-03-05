@@ -3,11 +3,13 @@ import BoardDetailsRow from "./BoardDetailsRow";
 import { requestBoardData } from "../../../__mocks__/requestBoardData";
 import { SKILL_LABEL_COLOR_MAPPING } from "@/constants/request-board";
 import { useGetEndorsements } from "@/services/endorsements";
+import { useGetSelfUser } from "@/services/users";
 
 export default function RequestBoardTable({ openDetails }: { openDetails: () => void }) {
     const { data: endorsements, isLoading } = useGetEndorsements();
     console.log(endorsements, isLoading); //will remove this when BE APIs are ready
-
+    const user = useGetSelfUser();
+    console.log(user);
     const renderBoardDetailsRow = requestBoardData.map((skillItem, index) => (
         <BoardDetailsRow
             key={skillItem.id}

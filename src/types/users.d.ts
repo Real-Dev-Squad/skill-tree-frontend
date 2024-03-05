@@ -1,3 +1,7 @@
+export type UserProfileStatus = "PENDING" | "BLOCKED" | "VERIFIED";
+
+export type UserStatus = "ooo" | "idle" | "active" | "onboarding";
+
 export type UserData = {
     id: string;
     profileURL?: string;
@@ -9,6 +13,7 @@ export type UserData = {
         maven?: boolean;
         designer?: boolean;
         product_manager?: boolean;
+        super_user?: boolean;
     };
     profileStatus?: UserProfileStatus;
     status?: UserStatus;
@@ -35,7 +40,3 @@ export type UserData = {
     github_user_id: string;
     website?: string;
 };
-
-export type UserProfileStatus = "PENDING" | "APPROVED" | "NOT APPROVED" | "BLOCKED";
-
-export type UserStatus = "ooo" | "idle" | "active" | "onboarding";
