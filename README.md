@@ -1,4 +1,4 @@
-# Frontend Repo for Skill-tree 
+# Frontend for Skill-tree 
 
 Display the skills a user has and the endorsements created for adding new skills to users profile.
 
@@ -17,6 +17,11 @@ https://stag-skill-tree.vercel.app/
 ### Prerequisites
 - [Node.js](https://nodejs.org/en/download)
 - Yarn 
+- Volta
+
+[Why Volta?](https://docs.volta.sh/guide/#why-volta)
+
+To install Volta, please follow this [Guide](https://docs.volta.sh/guide/getting-started)
 
 ### Setup
 - Install local dependencies
