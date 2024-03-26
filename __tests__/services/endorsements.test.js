@@ -17,12 +17,12 @@ afterAll(() => {
     server.close();
 });
 
-test.skip("test useGetEndorsements hook", async () => {
+test("test useGetEndorsements hook", async () => {
     const { result } = renderHook(() => useGetEndorsements(), { wrapper: createWrapper() });
     await waitFor(() => result.current.isSuccess);
 });
 
-test.skip("test useGetEndorsements hook", async () => {
+test("test usePostEndorsement hook", async () => {
     const { result } = renderHook(() => usePostEndorsement({ endorsementData: {} }), { wrapper: createWrapper() });
     await waitFor(() => result.current.isSuccess);
 });
