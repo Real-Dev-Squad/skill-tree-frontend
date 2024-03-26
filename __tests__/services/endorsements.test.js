@@ -18,11 +18,11 @@ afterAll(() => {
 });
 
 test("test useGetEndorsements hook", async () => {
-    const { result } = renderHook(() => useGetEndorsements(), { wrapper: createWrapper() });
+    const { result } = renderHook(() => useGetEndorsements(), { wrapper: createWrapper });
     await waitFor(() => result.current.isSuccess);
 });
 
 test("test usePostEndorsement hook", async () => {
-    const { result } = renderHook(() => usePostEndorsement({ endorsementData: {} }), { wrapper: createWrapper() });
+    const { result } = renderHook(() => usePostEndorsement({ endorsementData: {} }), { wrapper: createWrapper });
     await waitFor(() => result.current.isSuccess);
 });

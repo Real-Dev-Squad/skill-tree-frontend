@@ -30,7 +30,7 @@ afterAll(() => {
 
 describe("useGetSelfUser", () => {
     it("should return isSuccess true and return self user details", async () => {
-        const { result } = renderHook(() => useGetSelfUser(), { wrapper: createWrapper() });
+        const { result } = renderHook(() => useGetSelfUser(), { wrapper: createWrapper });
         await waitFor(() => expect(result.current.isSuccess).toBe(true));
 
         expect(result.current.data).toBeDefined();
@@ -39,7 +39,7 @@ describe("useGetSelfUser", () => {
 
     it("should return isError true and return unauthorized error message", async () => {
         server.use(selfUserUnauthorizedHandler);
-        const { result } = renderHook(() => useGetSelfUser(), { wrapper: createWrapper() });
+        const { result } = renderHook(() => useGetSelfUser(), { wrapper: createWrapper });
 
         await waitFor(() => expect(result.current.isLoading).toBe(false));
 
@@ -53,7 +53,7 @@ describe("useGetSelfUser", () => {
     it("should return server error with server error response message", async () => {
         server.use(selfUserServerErrorHandler);
 
-        const { result } = renderHook(() => useGetSelfUser(), { wrapper: createWrapper() });
+        const { result } = renderHook(() => useGetSelfUser(), { wrapper: createWrapper });
 
         await waitFor(() => expect(result.current.isLoading).toBe(false));
 

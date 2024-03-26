@@ -13,9 +13,6 @@ type TestWrapperProps = {
     children: ReactNode;
 };
 
-export function createWrapper() {
-    // eslint-disable-next-line react/display-name
-    return ({ children }: TestWrapperProps) => (
-        <QueryClientProvider client={testQueryClient}>{children}</QueryClientProvider>
-    );
+export function createWrapper({ children }: TestWrapperProps) {
+    return <QueryClientProvider client={testQueryClient}>{children}</QueryClientProvider>;
 }
