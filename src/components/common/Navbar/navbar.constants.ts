@@ -26,3 +26,31 @@ export const NAVBAR_LINKS: NavbarLink[] = [
         link: URLS.STATUS_SITE,
     },
 ];
+
+export const DROPDOWN_LINKS = [
+    {
+        id: "home-dropdown",
+        link: "/",
+        name: "Home",
+    },
+    {
+        id: "status-dropdown",
+        link: process.env.NEXT_PUBLIC_MY_SITE,
+        name: "Status",
+    },
+    {
+        id: "profile-dropdown",
+        link: `${process.env.NEXT_PUBLIC_MY_SITE}/profile`,
+        name: "Profile",
+    },
+    {
+        id: "tasks-dropdown",
+        link: `${process.env.NEXT_PUBLIC_MY_SITE}/tasks`,
+        name: "Tasks",
+    },
+    {
+        id: "indentity-dropdown",
+        link: `${process.env.NEXT_PUBLIC_MY_SITE}/tasks`,
+        name: "Identity",
+    },
+];

@@ -3,3 +3,7 @@ export type NavbarLink = {
     name: string;
     link: string;
 };
+
+export type NavDropdownProps = {
+    onSignoutClick: () => void;
+};
