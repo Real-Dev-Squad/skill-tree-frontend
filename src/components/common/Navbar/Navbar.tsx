@@ -6,9 +6,8 @@ import { IoIosArrowDown } from "react-icons/io";
 
 import { NAVBAR_LINKS, SIGNIN_URL } from "./navbar.constants";
 import { NavbarLink } from "./navbar.types";
-import { useGetSelfUser } from "@/services/users";
+import { useGetSelfUser, useLogoutUserMutation } from "@/services/users";
 import NavDropdown from "./NavDropdown";
-import { RDS_BACKEND_URL } from "@/constants/urls";
 
 export default function Navbar() {
     const [isNavbarLinksVisible, setIsNavbarLinksVisible] = useState<boolean>(false);
@@ -16,26 +15,26 @@ export default function Navbar() {
     const { data: selfUserData, isLoading: isSelfUserDataLoading, isError } = useGetSelfUser();
     const profilePicture = selfUserData?.picture?.url || "/profile.png";
     const isProfileDetailsVisible = !isSelfUserDataLoading && !isError;
-
+    const logout = useLogoutUserMutation();
     function toggleNavbarLinksVisibility() {
         setIsNavbarLinksVisible((prevState) => !prevState);
     }
+
     function toggleDropdown() {
         setIsDropdownVisible((prevState) => !prevState);
     }
 
-    async function onSignoutClick() {
-        try {
-            const signoutResponse = await fetch(`${RDS_BACKEND_URL}/auth/signout`, {
-                method: "GET",
-                credentials: "include",
+    async function signoutHandler() {
+        logout
+            .mutateAsync()
+            .then(() => {
+                window.location.reload();
+            })
+            .catch((error: Error) => {
+                console.error(error);
             });
-
-            if (signoutResponse.status === 200) window.location.reload();
-        } catch (error) {
-            console.error(error);
-        }
     }
+
     const navbarItemsMapping = NAVBAR_LINKS.map((item: NavbarLink) => (
         <li
             key={item.id}
@@ -67,7 +66,7 @@ export default function Navbar() {
                         </span>
                         <Image src={profilePicture} height={40} width={40} alt="profile" />
                         <IoIosArrowDown size={25} />
-                        {isDropdownVisible && <NavDropdown onSignoutClick={onSignoutClick} />}
+                        {isDropdownVisible && <NavDropdown onSignoutClick={signoutHandler} />}
                     </span>
                 ) : (
                     <a data-testid="signin-button" className="ml-auto decoration-none" href={SIGNIN_URL}>

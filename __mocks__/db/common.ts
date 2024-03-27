@@ -9,3 +9,9 @@ export const serverErrorResponse = {
     error: "Internal Server Error",
     message: "An internal server error occurred",
 };
+
+export const notFoundResponse = {
+    statusCode: 404,
+    error: "Not Found",
+    message: "Something went wrong",
+};
