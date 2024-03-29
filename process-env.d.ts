@@ -6,5 +6,6 @@ declare namespace NodeJS {
         NEXT_PUBLIC_WELCOME_SITE: string;
         NEXT_PUBLIC_WWW_SITE: string;
         NEXT_PUBLIC_MY_SITE: string;
+        NEXT_PUBLIC_APP_ENV: "staging" | "production" | "test" | "development";
     }
 }
