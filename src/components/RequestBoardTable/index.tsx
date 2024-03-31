@@ -9,7 +9,6 @@ export default function RequestBoardTable({ openDetails }: { openDetails: () => 
     const { data: endorsements, isLoading } = useGetEndorsements();
     console.log(endorsements, isLoading); //will remove this when BE APIs are ready
     const user = useGetSelfUser();
-    console.log(user);
     const renderBoardDetailsRow = requestBoardData.map((skillItem, index) => (
         <BoardDetailsRow
             key={skillItem.id}
