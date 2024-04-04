@@ -8,7 +8,7 @@ import { NavbarLink } from "./navbar.types";
 
 function Navbar() {
     const [isNavbarLinksVisible, setIsNavbarLinksVisible] = useState<boolean>(false);
-
+    console.log("added for triggering cloudflare deployment");
     function toggleNavbarLinksVisibility() {
         setIsNavbarLinksVisible((prevState) => !prevState);
     }
