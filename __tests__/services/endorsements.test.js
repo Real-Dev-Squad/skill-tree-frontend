@@ -1,7 +1,6 @@
-const { QueryClient, QueryClientProvider } = require("@tanstack/react-query");
-
 import { useGetEndorsements, usePostEndorsement } from "@/services/endorsements";
 import { renderHook, waitFor } from "@testing-library/react";
+import { createWrapper } from "../utils";
 const { server } = require("../../__mocks__/server");
 
 beforeAll(() => {
@@ -17,15 +16,13 @@ afterEach(() => {
 afterAll(() => {
     server.close();
 });
-const queryClient = new QueryClient();
-const wrapper = ({ children }) => <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>;
 
 test("test useGetEndorsements hook", async () => {
-    const { result } = renderHook(() => useGetEndorsements(), { wrapper });
+    const { result } = renderHook(() => useGetEndorsements(), { wrapper: createWrapper });
     await waitFor(() => result.current.isSuccess);
 });
 
-test("test useGetEndorsements hook", async () => {
-    const { result } = renderHook(() => usePostEndorsement({ endorsementData: {} }), { wrapper });
+test("test usePostEndorsement hook", async () => {
+    const { result } = renderHook(() => usePostEndorsement({ endorsementData: {} }), { wrapper: createWrapper });
     await waitFor(() => result.current.isSuccess);
 });
