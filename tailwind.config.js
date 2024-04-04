@@ -21,12 +21,20 @@ module.exports = {
             borderColor: {
                 azuresihWhite: "#E2E8F0",
             },
+            boxShadow: {
+                dropdown: "#3c40434d 0 1px 2px 0, #3c404326 0 2px 6px 2px",
+            },
+            transitionProperty: {
+                background: "background",
+            },
         },
         colors: {
             primary: "#041187",
             secondary: "#E30062",
             contrast: "#85DA6B",
             green: "#059669",
+            "dropdown-blue": "#0d6efd",
+            offwhite: "#fffbfb",
             red: {
                 100: "#FEF2F2",
                 300: "#FCA5A5",
@@ -47,6 +55,7 @@ module.exports = {
                 300: "#475569",
                 700: "#334155",
                 800: "#78716c",
+                950: "#030712",
             },
             yellow: {
                 dark: "#A16207",

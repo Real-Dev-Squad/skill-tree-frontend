@@ -29,7 +29,7 @@ export default function Home() {
                     <Wrapper styles="lg:hidden">
                         <h1 className="text-2xl lg:text-4xl font-semibold mb-2">Request board</h1>
                     </Wrapper>
-                    <Wrapper styles="sticky top-0 bg-[#f9fafb] z-[100] py-3 lg:static lg:bg-transparent lg:py-0">
+                    <Wrapper styles="sticky top-0 bg-[#f9fafb] py-3 lg:static lg:bg-transparent lg:py-0">
                         <div className="flex gap-4 lg:items-center lg:justify-between flex-col lg:flex-row">
                             <h1 className="hidden lg:block text-2xl lg:text-4xl font-semibold">Request board</h1>
                             <div className="flex gap-5">

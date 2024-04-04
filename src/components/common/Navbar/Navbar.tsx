@@ -2,15 +2,37 @@ import Image from "next/image";
 import React, { useState } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { IoLogoGithub } from "react-icons/io5";
+import { IoIosArrowDown } from "react-icons/io";
 
 import { NAVBAR_LINKS, SIGNIN_URL } from "./navbar.constants";
 import { NavbarLink } from "./navbar.types";
+import { useGetSelfUser, useLogoutUserMutation } from "@/services/users";
+import NavDropdown from "./NavDropdown";
 
-function Navbar() {
+export default function Navbar() {
     const [isNavbarLinksVisible, setIsNavbarLinksVisible] = useState<boolean>(false);
-
+    const [isDropdownVisible, setIsDropdownVisible] = useState<boolean>(false);
+    const { data: selfUserData, isLoading: isSelfUserDataLoading, isError } = useGetSelfUser();
+    const profilePicture = selfUserData?.picture?.url || "/profile.png";
+    const isProfileDetailsVisible = !isSelfUserDataLoading && !isError;
+    const logout = useLogoutUserMutation();
     function toggleNavbarLinksVisibility() {
         setIsNavbarLinksVisible((prevState) => !prevState);
+    }
+
+    function toggleDropdown() {
+        setIsDropdownVisible((prevState) => !prevState);
+    }
+
+    async function signoutHandler() {
+        logout
+            .mutateAsync()
+            .then(() => {
+                window.location.reload();
+            })
+            .catch((error: Error) => {
+                console.error(error);
+            });
     }
 
     const navbarItemsMapping = NAVBAR_LINKS.map((item: NavbarLink) => (
@@ -34,12 +56,26 @@ function Navbar() {
                 <nav className="navbar__desktop max-lg:hidden visible">
                     <ul className="flex gap-10 items-center max-lg:flex-col">{navbarItemsMapping}</ul>
                 </nav>
-                <a data-testid="signin-button" className="ml-auto decoration-none" href={SIGNIN_URL}>
-                    <span className="flex gap-2 items-center text-base max-sm:text-sm max-sm:font-bold font-semibold w-fit border text-white rounded-md py-2 p-2">
-                        <span>Sign in with Github</span>
-                        <IoLogoGithub size={25} />
+                {isProfileDetailsVisible ? (
+                    <span
+                        onClick={toggleDropdown}
+                        className="ml-auto cursor-pointer	 relative flex items-center gap-2 text-white"
+                    >
+                        <span className="font-bold" data-testid="navbar-name">
+                            Hello, {selfUserData?.first_name}
+                        </span>
+                        <Image src={profilePicture} height={40} width={40} alt="profile" />
+                        <IoIosArrowDown size={25} />
+                        {isDropdownVisible && <NavDropdown onSignoutClick={signoutHandler} />}
                     </span>
-                </a>
+                ) : (
+                    <a data-testid="signin-button" className="ml-auto decoration-none" href={SIGNIN_URL}>
+                        <span className="flex gap-2 items-center text-base max-sm:text-sm max-sm:font-bold font-semibold w-fit border text-white rounded-md py-2 p-2">
+                            <span>Sign in with Github</span>
+                            <IoLogoGithub size={25} />
+                        </span>
+                    </a>
+                )}
             </div>
             <nav
                 data-testid="mobile-nav"
@@ -52,5 +88,3 @@ function Navbar() {
         </header>
     );
 }
-
-export default Navbar;

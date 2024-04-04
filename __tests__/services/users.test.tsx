@@ -1,11 +1,15 @@
 import { renderHook, waitFor } from "@testing-library/react";
 
-import { selfUserServerErrorHandler, selfUserUnauthorizedHandler } from "../../__mocks__/handlers/users";
+import {
+    logoutUserNotFoundHandler,
+    selfUserServerErrorHandler,
+    selfUserUnauthorizedHandler,
+} from "../../__mocks__/handlers/users";
 import { server } from "../../__mocks__/server";
-import { useGetSelfUser } from "@/services/users";
+import { useGetSelfUser, useLogoutUserMutation } from "@/services/users";
 import { createWrapper, testQueryClient } from "../utils";
 
-import { serverErrorResponse, unauthorizedResponse } from "../../__mocks__/db/common";
+import { notFoundResponse, serverErrorResponse, unauthorizedResponse } from "../../__mocks__/db/common";
 import { selfUser } from "../../__mocks__/db/users";
 import { AxiosError } from "axios";
 
@@ -29,7 +33,7 @@ afterAll(() => {
 });
 
 describe("useGetSelfUser", () => {
-    it("should return isSuccess true and return self user details", async () => {
+    it("should return isSuccess true and return message", async () => {
         const { result } = renderHook(() => useGetSelfUser(), { wrapper: createWrapper });
         await waitFor(() => expect(result.current.isSuccess).toBe(true));
 
@@ -61,6 +65,33 @@ describe("useGetSelfUser", () => {
 
         if (result?.current?.error instanceof AxiosError) {
             expect(result?.current?.error?.response?.data).toStrictEqual(serverErrorResponse);
+        }
+    });
+});
+
+describe("useLogoutUserMutation", () => {
+    it("should return isSuccess true and return self user details", async () => {
+        const { result } = renderHook(() => useLogoutUserMutation(), { wrapper: createWrapper });
+
+        await result.current.mutateAsync();
+
+        await waitFor(() => expect(result.current.isSuccess).toBe(true));
+
+        expect(result.current.data).toBeDefined();
+        expect(result.current.data).toStrictEqual({ message: "Signout successful" });
+    });
+
+    it("should return server error with server error response message", async () => {
+        server.use(logoutUserNotFoundHandler);
+
+        const { result } = renderHook(() => useLogoutUserMutation(), { wrapper: createWrapper });
+
+        try {
+            await result.current.mutateAsync();
+            await waitFor(() => expect(result.current.isLoading).toBe(false));
+        } catch (error) {
+            const axiosError = error as AxiosError;
+            expect(axiosError?.response?.data).toStrictEqual({ ...notFoundResponse });
         }
     });
 });
