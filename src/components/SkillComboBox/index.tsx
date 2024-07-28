@@ -8,14 +8,14 @@ type OptionTypes = {
 };
 
 type ComboboxProps = {
+    placeholder: string;
     options: OptionTypes[];
+    onChange: (value: OptionTypes) => void; 
     value: OptionTypes;
-    onChange: (value: OptionTypes) => void;  // Changed to match the expected onChange type
-    placeholder?: string;
     handleAddSkill: () => void;
 }
 
-const SkillCombobox: FC = ({placeholder, options, value, onChange, handleAddSkill}: ComboboxProps) => {
+const SkillCombobox = ({placeholder, options, onChange, value, handleAddSkill}: ComboboxProps) => {
   const [query, setQuery] = useState('');
 
   const filteredSkills =
