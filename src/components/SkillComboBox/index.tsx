@@ -22,8 +22,8 @@ const SkillCombobox = ({ placeholder, options, onChange, value, handleAddSkill }
         query === ""
             ? options
             : options.filter((option) => {
-                  return option?.skill?.toLowerCase().includes(query.toLowerCase());
-              });
+                return option?.skill?.toLowerCase().includes(query.toLowerCase());
+            });
 
     return (
         <Combobox value={value} onChange={onChange}>

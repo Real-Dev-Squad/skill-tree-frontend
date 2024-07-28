@@ -1,5 +1,5 @@
 import React from "react";
-import { render, fireEvent, screen, waitFor, prettyDOM } from "@testing-library/react";
+import { render, fireEvent, screen, waitFor} from "@testing-library/react";
 import SkillCombobox from "@/components/SkillComboBox";
 import Endorsements from "@/pages/endorsements";
 import { skillMockData } from "../../../__mocks__/endorsements";
