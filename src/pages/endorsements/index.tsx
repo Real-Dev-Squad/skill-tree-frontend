@@ -12,16 +12,15 @@ type OptionTypes = {
 };
 
 const Endorsements: FC = () => {
-
     const [selected, setSelected] = useState<OptionTypes | undefined>(undefined);
 
-    const handleSkillSelect = (value : OptionTypes) => {
-          setSelected(value);
-    }
+    const handleSkillSelect = (value: OptionTypes) => {
+        setSelected(value);
+    };
 
     const handleAddSkill = () => {
-          alert("Add skill clicked");
-    }
+        alert("Add skill clicked");
+    };
 
     return (
         <Layout title="Endorsements">
@@ -46,7 +45,13 @@ const Endorsements: FC = () => {
                     <h1 className="text-black font-semibold text-2xl">Prakash</h1>
                     <div className="flex items-center mt-8 mb-5">
                         <h3 className="text-sm mr-10 font-medium">Skill :</h3>
-                        <SkillCombobox placeholder="select skill" options={skillMockData} onChange={handleSkillSelect} value={selected} handleAddSkill={handleAddSkill} />
+                        <SkillCombobox
+                            placeholder="select skill"
+                            options={skillMockData}
+                            onChange={handleSkillSelect}
+                            value={selected}
+                            handleAddSkill={handleAddSkill}
+                        />
                     </div>
                     <div className="flex items-center space-x-2 mb-5">
                         <h3 className="mr-6">vote:</h3>

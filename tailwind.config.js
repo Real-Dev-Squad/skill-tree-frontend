@@ -13,7 +13,7 @@ module.exports = {
                 magicRed: "#F43F5E",
                 cadetGrey: "#94A3B8",
                 slatGrey: "#64748B",
-                darkblueblack: "#0F172A"
+                darkblueblack: "#0F172A",
             },
             backgroundColor: {
                 aliceBlue: "#EFF6FF",
@@ -57,17 +57,16 @@ module.exports = {
             blue: { 700: "#1D4ED8", 100: "#F8FAFC", 200: "#F1F5F9", 300: "#E2E8F0" },
         },
 
-        borderColor: { 
-            blue : "#3B82F6",
-            gray : "#E2E8F0",
-            lightgray : "#E5E7EB"
+        borderColor: {
+            blue: "#3B82F6",
+            gray: "#E2E8F0",
+            lightgray: "#E5E7EB",
         },
 
         boxShadow: {
-            'custom-1': '0px 4px 3px 0px #0000001A',
-            'custom-2': '0px 10px 8px 0px #0000000A',
-          },
-
+            "custom-1": "0px 4px 3px 0px #0000001A",
+            "custom-2": "0px 10px 8px 0px #0000000A",
+        },
     },
     plugins: [],
 };
