@@ -4,7 +4,7 @@ import { render, screen } from "@testing-library/react";
 describe("Endorsements", () => {
     test("renders Endorsements ui", () => {
         render(<Endorsements />);
-        const skillCombobox = screen.getByText("select skill");
+        const skillCombobox = screen.getByRole("combobox");
         const upvoteButton = screen.getByText("Upvote");
         const downvoteButton = screen.getByText("Downvote");
         const CompleteEndorsementButton = screen.getByText("Complete Endorsement");

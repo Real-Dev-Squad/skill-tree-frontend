@@ -10,9 +10,11 @@ const Endorsements: FC = () => {
 
     const [selected, setSelected] = useState(null);
 
-    const handleSkillSelect = (value: string) => {
+    const handleSkillSelect = (value) => {
           setSelected(value);
     }
+
+    console.log(selected);
 
     const handleAddSkill = () => {
           alert("Add skill clicked");
@@ -40,7 +42,7 @@ const Endorsements: FC = () => {
                 <section className="bg-white p-10 h-[600px]">
                     <h1 className="text-black font-semibold text-2xl">Prakash</h1>
                     <div className="flex items-center mt-8 mb-5">
-                        <label for="Skill" className="text-sm mr-10 font-medium">Skill :</label>
+                        <h3 className="text-sm mr-10 font-medium">Skill :</h3>
                         <SkillCombobox placeholder="select skill" options={skillMockData} onChange={handleSkillSelect} value={selected} handleAddSkill={handleAddSkill} />
                     </div>
                     <div className="flex items-center space-x-2 mb-5">
