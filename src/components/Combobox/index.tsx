@@ -17,12 +17,9 @@ type ComboboxProps = {
 const ComboboxDropdown = ({ options, value, onChange, placeholder }: ComboboxProps) => {
     const [query, setQuery] = useState("");
 
-    const filteredOptions =
-        query === ""
-            ? options
-            : options.filter((option) => {
-                  return option?.name?.toLowerCase().includes(query.toLowerCase());
-              });
+    const filteredOptions = !query
+        ? options
+        : options.filter((option) => option?.name?.toLowerCase().includes(query.toLowerCase()));
 
     return (
         <Combobox value={value} onChange={onChange}>

@@ -18,12 +18,9 @@ type ComboboxProps = {
 const SkillCombobox = ({ placeholder, options, onChange, value, handleAddSkill }: ComboboxProps) => {
     const [query, setQuery] = useState<string>("");
 
-    const filteredSkills =
-        query === ""
-            ? options
-            : options.filter((option) => {
-                  return option?.skill?.toLowerCase().includes(query.toLowerCase());
-              });
+    const filteredSkills = !query
+        ? options
+        : options.filter((option) => option?.skill?.toLowerCase().includes(query.toLowerCase()));
 
     return (
         <Combobox value={value} onChange={onChange}>
