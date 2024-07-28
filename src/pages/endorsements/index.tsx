@@ -6,15 +6,18 @@ import SkillLabel from "@/components/SkillLabel";
 import { endorsementsListsMock, skillMockData } from "../../../__mocks__/endorsements";
 import SkillCombobox from "@/components/SkillComboBox";
 
+type OptionTypes = {
+    id: number;
+    skill: string;
+};
+
 const Endorsements: FC = () => {
 
-    const [selected, setSelected] = useState(null);
+    const [selected, setSelected] = useState<OptionTypes | undefined>(undefined);
 
-    const handleSkillSelect = (value) => {
+    const handleSkillSelect = (value : OptionTypes) => {
           setSelected(value);
     }
-
-    console.log(selected);
 
     const handleAddSkill = () => {
           alert("Add skill clicked");

@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { Combobox, Transition } from '@headlessui/react';
-import React, { useState, FC, Fragment } from 'react';
+import React, { useState, Fragment } from 'react';
 
 type OptionTypes = {
   id: number;
@@ -9,12 +9,12 @@ type OptionTypes = {
 
 type ComboboxProps = {
     options: OptionTypes[];
-    value: OptionTypes;
-    onChange: (value: OptionTypes) => void;
+    value?: OptionTypes;
+    onChange?: (value: OptionTypes) => void;
     placeholder?: string;
 }
 
-const ComboboxDropdown: FC = ({placeholder, options, value, onChange}: ComboboxProps) => {
+const ComboboxDropdown = ({options, value, onChange, placeholder}: ComboboxProps) => {
   const [query, setQuery] = useState('');
 
   const filteredOptions =
@@ -29,7 +29,7 @@ const ComboboxDropdown: FC = ({placeholder, options, value, onChange}: ComboboxP
       <div className="relative">
           <Combobox.Input
             className="border rounded-lg border-blue bg-black/5 font-normal py-2.5 px-4 text-sm/6 h-11 w-64 focus:outline-none data-[focus]:outline-2 data-[focus]:-outline-offset-2 data-[focus]:outline-white/25"
-            displayValue={(option) => option?.name}
+            displayValue={(option: OptionTypes) => option?.name}
             onChange={(event) => setQuery(event.target.value)}
             placeholder={placeholder}
           />

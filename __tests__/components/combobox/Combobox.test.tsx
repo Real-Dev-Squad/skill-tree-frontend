@@ -45,7 +45,7 @@ describe('Combobox Component', () => {
 
   it('Select a value from the combobox list', async() => {
     const onChangeMock = jest.fn();
-    render(<ComboboxDropdown options={ComboboxMockData} placeholder="placeholder" onChange={onChangeMock} value={null} />);
+    render(<ComboboxDropdown options={ComboboxMockData} placeholder="placeholder" onChange={onChangeMock} />);
     const button = screen.getByRole('button');
 
     expect(screen.queryByRole('listbox')).not.toBeInTheDocument(); // Check listbox is initially closed
@@ -65,7 +65,7 @@ describe('Combobox Component', () => {
   });
 
    it('filters the options based on input value', async () => {
-      render(<ComboboxDropdown value="" onChange={() => {}} placeholder="placeholder" options={ComboboxMockData} />);
+      render(<ComboboxDropdown  onChange={() => {}} placeholder="placeholder" options={ComboboxMockData} />);
       expect(screen.queryByRole('listbox')).not.toBeInTheDocument(); 
       const button = screen.getByRole('button');
       fireEvent.click(button);
@@ -83,7 +83,7 @@ describe('Combobox Component', () => {
 
   it('Display No Results option when no options are present', async() => {
 
-    render(<ComboboxDropdown options={ComboboxMockData}  placeholder="placeholder" value={null}/>);
+    render(<ComboboxDropdown options={ComboboxMockData}  placeholder="placeholder"/>);
     const input = screen.getByRole('combobox');
     expect(screen.queryByRole('listbox')).not.toBeInTheDocument(); // Check listbox is initially closed
 

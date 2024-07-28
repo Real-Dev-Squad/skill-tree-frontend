@@ -35,7 +35,7 @@ describe('SkillCombobox Component', () => {
 
   it('Select a value from the combobox list', async() => {
     const onChangeMock = jest.fn();
-    render(<SkillCombobox options={skillMockData} placeholder="select skill" onChange={onChangeMock} value={null} />);
+    render(<SkillCombobox options={skillMockData} placeholder="select skill" onChange={onChangeMock} />);
     const button = screen.getByRole('button');
 
     expect(screen.queryByRole('listbox')).not.toBeInTheDocument(); // Check listbox is initially closed
@@ -55,7 +55,7 @@ describe('SkillCombobox Component', () => {
   });
 
    it('filters the options based on input value', async () => {
-      render(<SkillCombobox value="" onChange={() => {}} placeholder="select skill" options={skillMockData} />);
+      render(<SkillCombobox onChange={() => {}} placeholder="select skill" options={skillMockData} />);
       expect(screen.queryByRole('listbox')).not.toBeInTheDocument(); 
       const button = screen.getByRole('button');
       fireEvent.click(button);
@@ -75,7 +75,7 @@ describe('SkillCombobox Component', () => {
 
     const handleAddSkill = jest.fn();
    
-    render(<SkillCombobox options={skillMockData}  placeholder="select skill" value={null} handleAddSkill={handleAddSkill}/>);
+    render(<SkillCombobox options={skillMockData}  placeholder="select skill" handleAddSkill={handleAddSkill}/>);
     const input = screen.getByRole('combobox');
     expect(screen.queryByRole('listbox')).not.toBeInTheDocument(); // Check listbox is initially closed
 
@@ -97,7 +97,6 @@ describe('SkillCombobox Component', () => {
     render(
       <div>
       <SkillCombobox
-        value={null}
         onChange={() => {}}
         placeholder="select skill"
         options={skillMockData}

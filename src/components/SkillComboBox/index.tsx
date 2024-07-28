@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { Combobox, Transition } from '@headlessui/react';
-import React, { useState, FC, Fragment } from 'react';
+import React, { useState, Fragment } from 'react';
 
 type OptionTypes = {
   id: number;
@@ -10,13 +10,13 @@ type OptionTypes = {
 type ComboboxProps = {
     placeholder: string;
     options: OptionTypes[];
-    onChange: (value: OptionTypes) => void; 
-    value: OptionTypes;
-    handleAddSkill: () => void;
+    onChange?: (value: OptionTypes) => void; 
+    value?: OptionTypes;
+    handleAddSkill?: () => void;
 }
 
 const SkillCombobox = ({placeholder, options, onChange, value, handleAddSkill}: ComboboxProps) => {
-  const [query, setQuery] = useState('');
+  const [query, setQuery] = useState<string>('');
 
   const filteredSkills =
     query === ''
@@ -30,7 +30,7 @@ const SkillCombobox = ({placeholder, options, onChange, value, handleAddSkill}: 
       <div className="relative">
           <Combobox.Input
             className="border rounded-lg border-blue bg-black/5 font-normal py-2.5 px-4 text-sm/6 h-11 w-64 focus:outline-none data-[focus]:outline-2 data-[focus]:-outline-offset-2 data-[focus]:outline-white/25"
-            displayValue={(option) => option?.skill}
+            displayValue={(option: OptionTypes) => option?.skill}
             onChange={(event) => setQuery(event.target.value)}
             placeholder={placeholder}
           />
