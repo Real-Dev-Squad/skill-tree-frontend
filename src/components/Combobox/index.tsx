@@ -21,8 +21,8 @@ const ComboboxDropdown = ({ options, value, onChange, placeholder }: ComboboxPro
         query === ""
             ? options
             : options.filter((option) => {
-                return option?.name?.toLowerCase().includes(query.toLowerCase());
-            });
+                  return option?.name?.toLowerCase().includes(query.toLowerCase());
+              });
 
     return (
         <Combobox value={value} onChange={onChange}>
