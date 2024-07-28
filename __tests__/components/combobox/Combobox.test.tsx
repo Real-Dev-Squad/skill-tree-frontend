@@ -1,5 +1,5 @@
 import React from "react";
-import { render, fireEvent, screen, waitFor, prettyDOM } from "@testing-library/react";
+import { render, fireEvent, screen, waitFor } from "@testing-library/react";
 import { ComboboxMockData } from "../../../__mocks__/combobox";
 import ComboboxDropdown from "@/components/Combobox";
 
