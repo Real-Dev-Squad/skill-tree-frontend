@@ -1,4 +1,5 @@
 import type { AppProps } from "next/app"
+import { Inter } from "next/font/google"
 
 import { validateEnv } from "@/config"
 import "@/styles/global.css"
@@ -12,12 +13,21 @@ import { UserGuard } from "@/components/user-guard"
  */
 validateEnv()
 
+const inter = Inter({
+    display: "swap",
+    preload: true,
+    subsets: ["latin"],
+    weight: ["400", "500", "600", "700"],
+})
+
 export default function MyApp({ Component, pageProps }: AppProps) {
     return (
-        <Providers>
-            <UserGuard>
-                <Component {...pageProps} />
-            </UserGuard>
-        </Providers>
+        <div className={inter.className}>
+            <Providers>
+                <UserGuard>
+                    <Component {...pageProps} />
+                </UserGuard>
+            </Providers>
+        </div>
     )
 }
