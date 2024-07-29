@@ -1,4 +1,4 @@
-import { z } from "zod";
+import { z } from "zod"
 
 const configSchema = z.object({
     appEnv: z.enum(["dev", "staging", "prod"]),
@@ -10,9 +10,9 @@ const configSchema = z.object({
     welcomeSiteUrl: z.string(),
     wwwSiteUrl: z.string(),
     mySiteUrl: z.string(),
-});
+})
 
-type TConfig = z.infer<typeof configSchema>;
+type TConfig = z.infer<typeof configSchema>
 
 export const config = {
     appEnv: process.env.NEXT_PUBLIC_APP_ENV,
@@ -24,7 +24,7 @@ export const config = {
     welcomeSiteUrl: process.env.NEXT_PUBLIC_WELCOME_SITE_URL,
     wwwSiteUrl: process.env.NEXT_PUBLIC_WWW_SITE_URL,
     mySiteUrl: process.env.NEXT_PUBLIC_MY_SITE_URL,
-} as TConfig;
+} as TConfig
 
 /**
  * Validate if all the required environment variables defined in the schema above are set
@@ -32,8 +32,8 @@ export const config = {
  * ---
  */
 export const validateEnv = () => {
-    const result = configSchema.safeParse(config);
-    const errors = result.error?.flatten().fieldErrors;
+    const result = configSchema.safeParse(config)
+    const errors = result.error?.flatten().fieldErrors
 
     if (!result.success) {
         throw new Error(
@@ -45,6 +45,6 @@ export const validateEnv = () => {
                 null,
                 2
             )
-        );
+        )
     }
-};
+}
