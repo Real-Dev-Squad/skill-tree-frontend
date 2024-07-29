@@ -1,6 +1,6 @@
 export type TEndorsement = {
     id: number
     endorserId: string
-    endorsementDate: Date
+    endorsementDate: string
     message: string
 }

@@ -17,12 +17,13 @@ const inter = Inter({
     display: "swap",
     preload: true,
     subsets: ["latin"],
+    variable: "--font-inter",
     weight: ["400", "500", "600", "700"],
 })
 
 export default function MyApp({ Component, pageProps }: AppProps) {
     return (
-        <div className={inter.className}>
+        <div className={`${inter.variable} font-sans`}>
             <Providers>
                 <UserGuard>
                     <Component {...pageProps} />

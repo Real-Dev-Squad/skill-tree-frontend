@@ -8,3 +8,7 @@
     box-sizing: border-box;
     scroll-behavior: smooth;
 }
+
+html {
+    @apply bg-gray-50;
+}
