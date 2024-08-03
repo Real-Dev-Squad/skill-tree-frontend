@@ -5,6 +5,7 @@ import { validateEnv } from "@/config"
 import "@/styles/global.css"
 import { Providers } from "@/utils/providers"
 import { UserGuard } from "@/components/user-guard"
+import { inter } from "@/utils/fonts"
 
 /**
  * Validate if all the required environment variables are set
@@ -12,14 +13,6 @@ import { UserGuard } from "@/components/user-guard"
  * ---
  */
 validateEnv()
-
-const inter = Inter({
-    display: "swap",
-    preload: true,
-    subsets: ["latin"],
-    variable: "--font-inter",
-    weight: ["400", "500", "600", "700"],
-})
 
 export default function MyApp({ Component, pageProps }: AppProps) {
     return (
