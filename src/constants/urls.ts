@@ -34,8 +34,8 @@ export const URLS_MAP: Urls = {
     },
     development: {
         BACKEND_BASE_URL: "https://staging-skilltree-api.realdevsquad.com/v1",
-        RDS_BACKEND_URL: "https://staging-api.realdevsquad.com",
-        SKILL_TREE_SITE: "https://staging-skilltree.realdevsquad.com",
+        RDS_BACKEND_URL: "http://localhost:3000",
+        SKILL_TREE_SITE: "http://localhost:4000",
         STATUS_SITE: "https://staging-status.realdevsquad.com",
         MEMBERS_SITE: "https://staging-members.realdevsquad.com",
         WELCOME_SITE: "https://welcome.realdevsquad.com",

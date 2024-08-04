@@ -4,7 +4,11 @@ import React from "react";
 import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
-const Providers = ({ children }) => {
+type Props = {
+    children: React.ReactNode;
+}
+
+export const Providers = ({ children }: Props) => {
     const [client] = React.useState(new QueryClient());
 
     return (
@@ -15,4 +19,3 @@ const Providers = ({ children }) => {
     );
 };
 
-export default Providers;
