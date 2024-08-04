@@ -1,11 +1,11 @@
 import type { AppProps } from "next/app"
-import { Inter } from "next/font/google"
+import { Toaster } from "react-hot-toast"
 
+import { UserGuard } from "@/components/user-guard"
 import { validateEnv } from "@/config"
 import "@/styles/global.css"
-import { Providers } from "@/utils/providers"
-import { UserGuard } from "@/components/user-guard"
 import { inter } from "@/utils/fonts"
+import { Providers } from "@/utils/providers"
 
 /**
  * Validate if all the required environment variables are set
@@ -19,6 +19,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
         <div className={`${inter.variable} font-sans`}>
             <Providers>
                 <UserGuard>
+                    <Toaster position="top-right" />
                     <Component {...pageProps} />
                 </UserGuard>
             </Providers>

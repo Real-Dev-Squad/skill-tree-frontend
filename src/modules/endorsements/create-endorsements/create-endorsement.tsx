@@ -9,6 +9,11 @@ import { RdsUsersCombobox } from "./components/rds-users-combobox"
 import { SkillListCombobox } from "./components/skill-list-combobox"
 import { Textarea } from "@/components/textarea"
 import { Button } from "@/components/button"
+import { useMutation } from "@tanstack/react-query"
+import { SkillsApi } from "@/api/skills"
+import toast from "react-hot-toast"
+import { useRouter } from "next/router"
+import { ROUTES } from "@/routes"
 
 const SKILL_ID_REQUIRED_ERROR = "Please select a skill to endorse"
 const ENDORSE_ID_REQUIRED_ERROR = "Please select a user to endorse"
@@ -23,6 +28,8 @@ const endorsementFormSchema = z.object({
 type TEndorsementFormSchema = z.infer<typeof endorsementFormSchema>
 
 const EndorsementForm = () => {
+    const { push } = useRouter()
+
     const {
         control,
         handleSubmit,
@@ -31,8 +38,27 @@ const EndorsementForm = () => {
         resolver: zodResolver(endorsementFormSchema),
     })
 
+    const createEndorsementMutation = useMutation({
+        mutationFn: SkillsApi.createEndorsement,
+        onSuccess: () => {
+            toast.success("Endorsement created successfully")
+            push(ROUTES.requests)
+        },
+        onError: (error: any) => {
+            if (error.message) {
+                toast.error(error.message)
+                return
+            }
+
+            toast.error("Failed to create endorsement")
+        },
+    })
+
     const onSubmit = handleSubmit((data) => {
-        console.log(data)
+        createEndorsementMutation.mutate({
+            skillId: data.skillId,
+            body: { endorseId: data.endorseId, message: data.message },
+        })
     })
 
     return (
@@ -79,7 +105,7 @@ const EndorsementForm = () => {
                 )}
             />
 
-            <Button>Create Endorsement</Button>
+            <Button loading={createEndorsementMutation.isPending}>Create Endorsement</Button>
         </Form>
     )
 }

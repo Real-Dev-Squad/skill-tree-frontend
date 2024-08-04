@@ -1,6 +1,7 @@
 import { TEndorsement } from "../common/endosement.types"
 import { MinimalUser } from "../common/minimal-user.types"
 import { SkillTypeEnum } from "./skills.enum"
+import { TCreteEndorsementBody } from "./skills.types"
 
 export type SkillRequests = {
     skillId: number
@@ -21,3 +22,8 @@ export type TSkill = {
 }
 
 export type TGetAllSkillsResDto = TSkill[]
+
+export type createEndorsementReqDto = {
+    skillId: number
+    body: TCreteEndorsementBody
+}
