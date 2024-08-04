@@ -21,9 +21,14 @@ export type TSkill = {
     type: SkillTypeEnum
 }
 
+export type CreateSkillReqDto = {
+    name: string
+    type: SkillTypeEnum
+}
+
 export type TGetAllSkillsResDto = TSkill[]
 
-export type createEndorsementReqDto = {
+export type CreateEndorsementReqDto = {
     skillId: number
     body: TCreteEndorsementBody
 }

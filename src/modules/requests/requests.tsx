@@ -39,8 +39,12 @@ export const Requests = () => {
         <RootLayout>
             <div className="w-full p-6">
                 <div className="mx-auto max-w-screen-lg rounded-lg border border-gray-100 bg-white p-6">
-                    <div className="flex items-center justify-between pb-6">
-                        <h1 className="text-2xl font-semibold text-gray-800">Requests board</h1>
+                    <div className="flex items-center gap-4 pb-6">
+                        <h1 className="flex-1 text-2xl font-semibold text-gray-800">Requests board</h1>
+
+                        <Button asChild size="xs" variant="ghost" className="text-gray-500">
+                            <Link href={ROUTES.skills.create}>Create Skill</Link>
+                        </Button>
 
                         <Button asChild size="xs" variant="secondary">
                             <Link href={ROUTES.endorsements.create}>Create Endorsement</Link>

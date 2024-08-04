@@ -14,6 +14,8 @@ import toast from "react-hot-toast"
 import { z } from "zod"
 import { RdsUsersCombobox } from "./components/rds-users-combobox"
 import { SkillListCombobox } from "./components/skill-list-combobox"
+import { AxiosError } from "axios"
+import { toErrorMessage } from "@/utils/to-error-message"
 
 const SKILL_ID_REQUIRED_ERROR = "Please select a skill to endorse"
 const ENDORSE_ID_REQUIRED_ERROR = "Please select a user to endorse"
@@ -47,13 +49,8 @@ const EndorsementForm = () => {
 
             push(ROUTES.requests)
         },
-        onError: (error: any) => {
-            if (error.message) {
-                toast.error(error.message)
-                return
-            }
-
-            toast.error("Failed to create endorsement")
+        onError: (error: AxiosError<any>) => {
+            toast.error(toErrorMessage(error))
         },
     })
 
@@ -108,7 +105,9 @@ const EndorsementForm = () => {
                 )}
             />
 
-            <Button loading={createEndorsementMutation.isPending}>Create Endorsement</Button>
+            <Button size="sm" loading={createEndorsementMutation.isPending}>
+                Create Endorsement
+            </Button>
         </Form>
     )
 }
