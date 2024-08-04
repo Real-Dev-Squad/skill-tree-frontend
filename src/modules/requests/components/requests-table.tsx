@@ -3,6 +3,13 @@ import { GetAllPendingSkillRequestsResDto } from "@/api/skills/skills.dto"
 import { Button } from "@/components/button"
 import { cn } from "@/utils/classname"
 import { EndorsementsGroup, TFormattedEndorsement } from "./endorsements-group"
+import { useMutation, useQueryClient } from "@tanstack/react-query"
+import { SkillsApi } from "@/api/skills"
+import { UserSkillStatusEnum } from "@/api/skills/skills.enum"
+import toast from "react-hot-toast"
+import { toErrorMessage } from "@/utils/to-error-message"
+import { AxiosError } from "axios"
+import { TUserDetails } from "@/api/common/user.types"
 
 type CellProps = {
     className?: string
@@ -44,10 +51,46 @@ const TableHeader = () => {
     )
 }
 
-const RequestActions = () => {
+type RequestActionsProps = {
+    skillId: number
+    endorseId: string
+}
+
+const RequestActions = ({ skillId, endorseId }: RequestActionsProps) => {
+    const queryClient = useQueryClient()
+
+    const approveRequestsMutation = useMutation({
+        mutationFn: () =>
+            SkillsApi.approveRejectSkillRequest({ skillId, body: { endorseId, action: UserSkillStatusEnum.APPROVED } }),
+        onSuccess: () => {
+            queryClient.invalidateQueries({ queryKey: ["SkillsApi.getAllPendingSkillRequests"] })
+            toast.success("Skill Request approved")
+        },
+        onError: (error: AxiosError<any>) => {
+            toast.error(toErrorMessage(error))
+        },
+    })
+
+    const rejectRequestsMutation = useMutation({
+        mutationFn: () =>
+            SkillsApi.approveRejectSkillRequest({ skillId, body: { endorseId, action: UserSkillStatusEnum.REJECTED } }),
+        onSuccess: () => {
+            queryClient.invalidateQueries({ queryKey: ["SkillsApi.getAllPendingSkillRequests"] })
+            toast.success("Skill Request rejected")
+        },
+        onError: (error: AxiosError<any>) => {
+            toast.error(toErrorMessage(error))
+        },
+    })
+
     return (
         <div className="flex items-center gap-2">
-            <Button size="xs" className="rounded-full">
+            <Button
+                size="xs"
+                className="rounded-full"
+                loading={approveRequestsMutation.isPending}
+                onClick={() => approveRequestsMutation.mutate()}
+            >
                 Approve
             </Button>
 
@@ -55,6 +98,8 @@ const RequestActions = () => {
                 size="xs"
                 variant="ghost"
                 className="rounded-full text-gray-500 hover:bg-red-100 hover:text-red-600 focus:bg-red-100 active:bg-red-200"
+                loading={rejectRequestsMutation.isPending}
+                onClick={() => rejectRequestsMutation.mutate()}
             >
                 Reject
             </Button>
@@ -62,14 +107,10 @@ const RequestActions = () => {
     )
 }
 
-type TUserDetails = {
-    name: string
-    profilePicture: string
-}
-
 type TFormattedData = {
+    skillId: number
+    skillName: string
     endorse: TUserDetails
-    skill: string
     endorsements: TFormattedEndorsement[]
 }
 
@@ -85,18 +126,21 @@ export const RequestsTable = ({ data }: RequestsTableProps) => {
 
     const formattedData = data.requests.map<TFormattedData>((request) => ({
         endorse: {
+            id: request.endorseId,
             name: userIdToDetailsMap[request.endorseId].name,
             profilePicture: "", // TODO - @yesyash: Add profile picture
         },
         endorsements: request.endorsements.map<TFormattedEndorsement>((endorsement) => ({
             endorser: {
+                id: endorsement.endorserId,
                 name: userIdToDetailsMap[endorsement.endorserId].name,
                 profilePicture: "", // TODO - @yesyash: Add profile picture
             },
             date: endorsement.endorsementDate,
             message: endorsement.message,
         })),
-        skill: request.skillName,
+        skillId: request.skillId,
+        skillName: request.skillName,
     }))
 
     return (
@@ -106,12 +150,12 @@ export const RequestsTable = ({ data }: RequestsTableProps) => {
             {formattedData.map((request) => (
                 <tr>
                     <Td>{request.endorse.name}</Td>
-                    <Td>{request.skill}</Td>
+                    <Td>{request.skillName}</Td>
                     <Td>
                         <EndorsementsGroup endorsements={request.endorsements} />
                     </Td>
                     <Td>
-                        <RequestActions />
+                        <RequestActions skillId={request.skillId} endorseId={request.endorse.id} />
                     </Td>
                 </tr>
             ))}

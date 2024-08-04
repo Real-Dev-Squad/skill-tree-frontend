@@ -20,4 +20,9 @@ export class SkillsApi {
         const { status } = await client.post(`/v1/skills/${params.skillId}/endorsements`, params.body)
         return status
     }
+
+    public static async approveRejectSkillRequest(params: Dto.ApproveRejectSkillRequestReqDto): Promise<number> {
+        const { status } = await client.post(`/v1/skills/requests/${params.skillId}/action`, params.body)
+        return status
+    }
 }

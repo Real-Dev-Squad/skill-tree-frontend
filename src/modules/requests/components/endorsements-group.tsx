@@ -5,11 +5,12 @@ import { AvatarGroup, TProfile } from "@/components/avatar-group"
 import { Popover, PopoverTrigger } from "@/components/popover"
 import { DateTimeFormatEnum } from "@/enums/date-time-format.enum"
 import { PopoverContent } from "@radix-ui/react-popover"
+import { TUserDetails } from "@/api/common/user.types"
 
 export type TFormattedEndorsement = {
-    endorser: { name: string; profilePicture: string }
     date: string
     message: string
+    endorser: TUserDetails
 }
 
 type EndorsementsGroupProps = {
@@ -31,7 +32,7 @@ export const EndorsementsGroup = ({ endorsements }: EndorsementsGroupProps) => {
                     </div>
                 </PopoverTrigger>
 
-                <PopoverContent className="max-h-[500px] w-96 overflow-auto rounded-lg border bg-white shadow">
+                <PopoverContent className="relative z-50 max-h-[500px] w-96 overflow-auto rounded-lg border bg-white shadow">
                     <div className="sticky left-0 top-0 flex items-center justify-between border-b border-gray-200 bg-gray-100 p-4 text-base">
                         <h4 className="font-semibold text-gray-800">Endorsements</h4>
                         <span>{endorsements.length}</span>
@@ -41,6 +42,7 @@ export const EndorsementsGroup = ({ endorsements }: EndorsementsGroupProps) => {
                         <div className="border-b border-gray-100 p-4 last:border-none">
                             <div className="flex gap-2">
                                 <Avatar
+                                    className="shrink-0"
                                     src={endorsement.endorser.profilePicture}
                                     alt={endorsement.endorser.name}
                                     fallback={endorsement.endorser.name.slice(0, 1)}
