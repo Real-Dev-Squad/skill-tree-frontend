@@ -31,3 +31,16 @@ export type RdsUserSelfResDto = {
     updated_at: number
     created_at: number
 }
+
+export type GetAllRdsUsersReqDto = {
+    search?: string
+}
+
+export type GetAllRdsUsersResDto = {
+    message: string
+    users: RdsUserSelfResDto[]
+    link: {
+        next: string
+        previous: string
+    }
+}

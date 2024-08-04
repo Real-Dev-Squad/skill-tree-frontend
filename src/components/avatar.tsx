@@ -19,11 +19,12 @@ type AvatarProps = VariantProps<typeof avatarVariants> & {
     src: string
     alt: string
     fallback?: string
+    className?: string
 }
 
-export const Avatar = ({ src, alt, size, fallback }: AvatarProps) => {
+export const Avatar = ({ src, alt, size, fallback, className }: AvatarProps) => {
     return (
-        <div className={cn(avatarVariants({ size }))}>
+        <div className={cn(avatarVariants({ size }), className)}>
             {!!src.length ? (
                 <Image fill={true} src={src} alt={alt} />
             ) : (

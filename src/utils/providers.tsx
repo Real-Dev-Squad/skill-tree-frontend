@@ -14,6 +14,7 @@ export const Providers = ({ children }: Props) => {
             defaultOptions: {
                 queries: {
                     retry: 3,
+
                     refetchOnWindowFocus: false,
                 },
             },

@@ -4,12 +4,14 @@ import { TGlobalStoreUser, useGlobalStore } from "@/store/global-store"
 import { useQuery } from "@tanstack/react-query"
 import { usePathname } from "next/navigation"
 import { useEffect } from "react"
+import { PageError } from "./page-error"
+import { Loader } from "./loader"
 
 type Props = {
     children: React.ReactNode
 }
 
-const UNPROTECTED_PATHS = [ROUTES.root, ROUTES.signIn]
+const UNPROTECTED_PATHS: string[] = [ROUTES.root, ROUTES.signIn]
 
 export const UserGuard = ({ children }: Props) => {
     const pathname = usePathname()
@@ -40,11 +42,19 @@ export const UserGuard = ({ children }: Props) => {
     }, [data])
 
     if (isLoading) {
-        return <div>Loading...</div>
+        return (
+            <div className="grid h-screen w-full place-items-center">
+                <Loader className="h-7 w-7" />
+            </div>
+        )
     }
 
     if (isError) {
-        return <div>Error...</div>
+        return (
+            <div className="grid h-screen w-full place-items-center">
+                <PageError />
+            </div>
+        )
     }
 
     return <>{children}</>
