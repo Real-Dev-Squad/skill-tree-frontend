@@ -37,5 +37,6 @@ jobs:
             - name: Prettier check
               run: yarn check-format
 
-            - name: Run tests
-              run: yarn test
+            # TODO : Uncomment the following lines after adding tests
+            # - name: Run tests
+            #   run: yarn test

@@ -1,14 +1,72 @@
 {
-    "plugins": ["react", "react-hooks", "prettier", "@typescript-eslint"],
-    "extends": ["eslint:recommended", "next", "next/core-web-vitals", "prettier"],
-    "env": {
-        "jest": true
-    },
-    "rules": {
-        "indent": ["error", 4],
-        "quotes": ["error", "double"],
-        "semi": ["error", "always"],
-        "no-unused-vars": "off",
-        "@typescript-eslint/no-unused-vars": "error"
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:react-hooks/recommended",
+    "prettier",
+    "next/core-web-vitals"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "plugins": [
+    "react",
+    "@typescript-eslint",
+    "react-hooks",
+    "import"
+  ],
+  "rules": {
+    "eol-last": [
+      "error",
+      "always"
+    ],
+    "linebreak-style": [
+      "error",
+      "unix"
+    ],
+    "@typescript-eslint/no-explicit-any": "error",
+    "@typescript-eslint/no-non-null-assertion": "warn",
+    "import/order": [
+      "error",
+      {
+        "alphabetize": {
+          "order": "asc",
+          "caseInsensitive": true
+        },
+        "newlines-between": "always",
+        "groups": [
+          "builtin",
+          "external",
+          "internal",
+          "parent",
+          "sibling",
+          "index"
+        ],
+        "pathGroups": [
+          {
+            "pattern": "react",
+            "group": "external",
+            "position": "before"
+          },
+          {
+            "pattern": "@/*",
+            "group": "internal"
+          }
+        ],
+        "pathGroupsExcludedImportTypes": [
+          "builtin",
+          "@/*"
+        ]
+      }
+    ]
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
     }
+  },
+  "ignorePatterns": [
+    "node_modules/",
+    ".next/",
+    "out/"
+  ]
 }
