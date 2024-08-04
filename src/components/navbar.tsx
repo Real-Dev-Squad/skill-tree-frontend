@@ -26,7 +26,7 @@ const NavLink = ({ href, children }: NavLinkProps) => {
 
 export const Navbar = () => {
     return (
-        <nav className="fixed left-0 top-0 w-full bg-white">
+        <nav className="fixed left-0 top-0 w-full border-b border-gray-100 bg-white">
             <div className="mx-auto flex h-14 w-full max-w-screen-2xl items-center gap-6 px-6">
                 <h1 className="text-xl font-bold">Rds</h1>
 
