@@ -1,36 +1,23 @@
-import type { ReactElement, ReactNode } from "react";
-import type { NextPage } from "next";
-import type { AppProps } from "next/app";
+import type { AppProps } from "next/app"
 
-import { validateEnv } from "@/config";
-import "@/styles/global.css";
-import { Providers } from "@/utils/providers";
-
+import { validateEnv } from "@/config"
+import "@/styles/global.css"
+import { Providers } from "@/utils/providers"
+import { UserGuard } from "@/components/user-guard"
 
 /**
  * Validate if all the required environment variables are set
  * this will allow us to fail fast if any of the required environment variables are not set
- * --- 
-*/
-validateEnv();
+ * ---
+ */
+validateEnv()
 
-
-export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
-    getLayout?: (page: ReactElement) => ReactNode
-}
-
-type AppPropsWithLayout = AppProps & {
-    Component: NextPageWithLayout
-}
-
-export default function App({ Component, pageProps }: AppPropsWithLayout) {
-    // For more info on this pattern visit: https://nextjs.org/docs/pages/building-your-application/routing/pages-and-layouts#with-typescript
-    const getLayout = Component.getLayout ?? ((page) => page);
-
+export default function MyApp({ Component, pageProps }: AppProps) {
     return (
         <Providers>
-            {/* @ts-ignore */}
-            {getLayout(<Component {...pageProps} />)}
+            <UserGuard>
+                <Component {...pageProps} />
+            </UserGuard>
         </Providers>
-    );
+    )
 }
