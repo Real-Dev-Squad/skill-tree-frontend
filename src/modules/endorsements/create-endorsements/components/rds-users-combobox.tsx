@@ -4,9 +4,16 @@ import { debounce } from "@/utils/debounce"
 import { useQuery } from "@tanstack/react-query"
 import { useState } from "react"
 
-export const RdsUsersCombobox = () => {
+type Props = {
+    value?: string
+    label?: string
+    placeholder?: string
+    errorMessage?: string
+    onChange: (value?: string) => void
+}
+
+export const RdsUsersCombobox = ({ value, label, errorMessage, placeholder, onChange }: Props) => {
     const [search, setSearch] = useState("")
-    const [option, setOption] = useState<TComboBoxOption<string> | null>(null)
 
     const { data, isLoading, isError } = useQuery({
         enabled: !!search.length,
@@ -14,18 +21,22 @@ export const RdsUsersCombobox = () => {
         queryFn: () => RdsApi.getAllUsers({ search }),
     })
 
-    const filteredOptions =
+    const formattedOptions =
         data?.users.map<TComboBoxOption<string>>((user) => ({
-            value: user.id,
+            value: user.id.toString(),
             label: user.first_name + " " + user.last_name,
         })) ?? []
 
+    const selectedOption = formattedOptions.find((option) => option.value === value) ?? null
+
     return (
         <Combobox
-            label="User"
-            value={option}
-            options={filteredOptions}
-            onChange={(option) => setOption(option)}
+            label={label}
+            value={selectedOption}
+            placeholder={placeholder}
+            options={formattedOptions}
+            errorMessage={errorMessage}
+            onChange={(value) => onChange(value?.value)}
             onInputChange={debounce((search) => setSearch(search))}
         />
     )

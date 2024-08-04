@@ -1,8 +1,25 @@
+import { Input as BaseInput, Field, Label } from "@headlessui/react"
 import { cn } from "@/utils/classname"
-import { DetailedHTMLProps, InputHTMLAttributes } from "react"
+import { HTMLInputTypeAttribute } from "react"
 
-type Props = DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>
+type Props = {
+    name?: string
+    label?: string
+    disabled?: boolean
+    className?: string
+    type?: HTMLInputTypeAttribute
+    onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void
+}
 
-export const Input = ({ className, ...props }: Props) => {
-    return <input {...props} className={cn(className)} />
+/**
+ * TODO - @yesyash : Create a common label component
+ * ---
+ */
+export const Input = ({ name, disabled, label, type = "text", className, onChange }: Props) => {
+    return (
+        <Field disabled={disabled}>
+            {label && <Label>{label}</Label>}
+            <BaseInput name={name} type={type} className={cn(className)} onChange={onChange} />
+        </Field>
+    )
 }
