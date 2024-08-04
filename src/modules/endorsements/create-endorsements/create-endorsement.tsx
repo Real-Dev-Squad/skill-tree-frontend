@@ -1,19 +1,19 @@
-import { Controller, useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
+import { Controller, useForm } from "react-hook-form"
 
+import { SkillsApi } from "@/api/skills"
+import { BackButton } from "@/components/back-button"
+import { Button } from "@/components/button"
 import { Form } from "@/components/form"
-import { Input } from "@/components/input"
+import { Textarea } from "@/components/textarea"
 import { RootLayout } from "@/layouts/root-layout"
+import { ROUTES } from "@/routes"
+import { useMutation, useQueryClient } from "@tanstack/react-query"
+import { useRouter } from "next/router"
+import toast from "react-hot-toast"
 import { z } from "zod"
 import { RdsUsersCombobox } from "./components/rds-users-combobox"
 import { SkillListCombobox } from "./components/skill-list-combobox"
-import { Textarea } from "@/components/textarea"
-import { Button } from "@/components/button"
-import { useMutation } from "@tanstack/react-query"
-import { SkillsApi } from "@/api/skills"
-import toast from "react-hot-toast"
-import { useRouter } from "next/router"
-import { ROUTES } from "@/routes"
 
 const SKILL_ID_REQUIRED_ERROR = "Please select a skill to endorse"
 const ENDORSE_ID_REQUIRED_ERROR = "Please select a user to endorse"
@@ -29,6 +29,7 @@ type TEndorsementFormSchema = z.infer<typeof endorsementFormSchema>
 
 const EndorsementForm = () => {
     const { push } = useRouter()
+    const queryClient = useQueryClient()
 
     const {
         control,
@@ -41,7 +42,9 @@ const EndorsementForm = () => {
     const createEndorsementMutation = useMutation({
         mutationFn: SkillsApi.createEndorsement,
         onSuccess: () => {
+            queryClient.invalidateQueries({ queryKey: ["SkillsApi.getAllPendingSkillRequests"] })
             toast.success("Endorsement created successfully")
+
             push(ROUTES.requests)
         },
         onError: (error: any) => {
@@ -114,6 +117,8 @@ export const CreateEndorsement = () => {
     return (
         <RootLayout>
             <div className="mx-auto w-full max-w-3xl p-6">
+                <BackButton className="-ml-2 mb-6" />
+
                 <div className="rounded-lg border border-gray-200 bg-white p-6">
                     <h1 className="pb-6 text-3xl font-bold text-gray-800">Endorse a user</h1>
 

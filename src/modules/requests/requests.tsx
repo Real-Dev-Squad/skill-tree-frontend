@@ -4,6 +4,9 @@ import { Shimmer } from "@/components/shimmer"
 import { RootLayout } from "@/layouts/root-layout"
 import { useQuery } from "@tanstack/react-query"
 import { RequestsTable } from "./components/requests-table"
+import { Button } from "@/components/button"
+import Link from "next/link"
+import { ROUTES } from "@/routes"
 
 export const Requests = () => {
     const { data, isLoading, isError } = useQuery({
@@ -36,7 +39,13 @@ export const Requests = () => {
         <RootLayout>
             <div className="w-full p-6">
                 <div className="mx-auto max-w-screen-lg rounded-lg border border-gray-100 bg-white p-6">
-                    <h1 className="pb-6 text-2xl font-semibold text-gray-800">Requests board</h1>
+                    <div className="flex items-center justify-between pb-6">
+                        <h1 className="text-2xl font-semibold text-gray-800">Requests board</h1>
+
+                        <Button asChild size="xs" variant="secondary">
+                            <Link href={ROUTES.endorsements.create}>Create Endorsement</Link>
+                        </Button>
+                    </div>
 
                     <RequestsTable data={data ?? { requests: [], users: [] }} />
                 </div>
