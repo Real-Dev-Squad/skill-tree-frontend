@@ -7,8 +7,11 @@ import { RequestsTable } from "./components/requests-table"
 import { Button } from "@/components/button"
 import Link from "next/link"
 import { ROUTES } from "@/routes"
+import { useGlobalStore } from "@/store/global-store"
 
 export const Requests = () => {
+    const isSuperUser = useGlobalStore((store) => store.user?.roles.super_user)
+
     const { data, isLoading, isError } = useQuery({
         queryKey: ["SkillsApi.getAllPendingSkillRequests"],
         queryFn: SkillsApi.getAllPendingSkillRequests,
@@ -42,9 +45,11 @@ export const Requests = () => {
                     <div className="flex items-center gap-4 pb-6">
                         <h1 className="flex-1 text-2xl font-semibold text-gray-800">Requests board</h1>
 
-                        <Button asChild size="xs" variant="ghost" className="text-gray-500">
-                            <Link href={ROUTES.skills.create}>Create Skill</Link>
-                        </Button>
+                        {isSuperUser && (
+                            <Button asChild size="xs" variant="ghost" className="text-gray-500">
+                                <Link href={ROUTES.skills.create}>Create Skill</Link>
+                            </Button>
+                        )}
 
                         <Button asChild size="xs" variant="secondary">
                             <Link href={ROUTES.endorsements.create}>Create Endorsement</Link>
