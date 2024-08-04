@@ -11,6 +11,7 @@ import { toErrorMessage } from "@/utils/to-error-message"
 import { AxiosError } from "axios"
 import { TUserDetails } from "@/api/common/user.types"
 import { useGlobalStore } from "@/store/global-store"
+import { RequestTableEmptyState } from "./request-table-empty-state"
 
 type CellProps = {
     className?: string
@@ -145,6 +146,14 @@ export const RequestsTable = ({ data }: RequestsTableProps) => {
         skillId: request.skillId,
         skillName: request.skillName,
     }))
+
+    if (!formattedData.length) {
+        return (
+            <div className="grid h-96 place-items-center border-t border-gray-100">
+                <RequestTableEmptyState />
+            </div>
+        )
+    }
 
     return (
         <table className="w-full text-left">
