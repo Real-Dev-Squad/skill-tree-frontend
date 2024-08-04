@@ -1,9 +1,11 @@
+import { TRdsUserRoles } from "@/api/rds/rds.dto"
 import { create } from "zustand"
 
 export type TGlobalStoreUser = {
     id: string
     name: string
     profilePicture: string
+    roles: TRdsUserRoles
 }
 
 type TStore = {

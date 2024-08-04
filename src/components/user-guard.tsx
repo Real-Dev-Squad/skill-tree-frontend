@@ -36,6 +36,7 @@ export const UserGuard = ({ children }: Props) => {
             id: data.id,
             name: firstName + " " + lastName,
             profilePicture: data?.picture?.url ?? "",
+            roles: data.roles,
         }
 
         setGlobalStore({ user })

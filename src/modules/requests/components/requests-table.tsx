@@ -10,6 +10,7 @@ import toast from "react-hot-toast"
 import { toErrorMessage } from "@/utils/to-error-message"
 import { AxiosError } from "axios"
 import { TUserDetails } from "@/api/common/user.types"
+import { useGlobalStore } from "@/store/global-store"
 
 type CellProps = {
     className?: string
@@ -119,6 +120,8 @@ type RequestsTableProps = {
 }
 
 export const RequestsTable = ({ data }: RequestsTableProps) => {
+    const isSuperUser = useGlobalStore((state) => state.user?.roles.super_user)
+
     const userIdToDetailsMap = data.users.reduce<Record<string, MinimalUser>>(
         (acc, user) => ({ ...acc, [user.id]: user }),
         {}
@@ -155,7 +158,7 @@ export const RequestsTable = ({ data }: RequestsTableProps) => {
                         <EndorsementsGroup endorsements={request.endorsements} />
                     </Td>
                     <Td>
-                        <RequestActions skillId={request.skillId} endorseId={request.endorse.id} />
+                        {isSuperUser && <RequestActions skillId={request.skillId} endorseId={request.endorse.id} />}
                     </Td>
                 </tr>
             ))}
