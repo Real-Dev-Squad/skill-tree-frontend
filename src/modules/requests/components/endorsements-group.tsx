@@ -1,10 +1,10 @@
 import dayjs from "dayjs"
 
 import { Avatar } from "@/components/avatar"
-import { Popover, PopoverTrigger } from "@/components/popover"
-import { PopoverContent } from "@radix-ui/react-popover"
-import { DateTimeFormatEnum } from "@/enums/date-time-format.enum"
 import { AvatarGroup, TProfile } from "@/components/avatar-group"
+import { Popover, PopoverTrigger } from "@/components/popover"
+import { DateTimeFormatEnum } from "@/enums/date-time-format.enum"
+import { PopoverContent } from "@radix-ui/react-popover"
 
 export type TFormattedEndorsement = {
     endorser: { name: string; profilePicture: string }
@@ -17,8 +17,6 @@ type EndorsementsGroupProps = {
 }
 
 export const EndorsementsGroup = ({ endorsements }: EndorsementsGroupProps) => {
-    const firstThreeEndorsements = endorsements.slice(0, 3)
-
     return (
         <div>
             <Popover modal>
