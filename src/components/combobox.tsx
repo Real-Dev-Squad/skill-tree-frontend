@@ -1,5 +1,3 @@
-import { cn } from "@/utils/classname"
-import { inter } from "@/utils/fonts"
 import {
     Combobox as BaseCombobox,
     ComboboxInput as BaseComboboxInput,
@@ -7,8 +5,12 @@ import {
     ComboboxOptions as BaseComboboxOptions,
     Field,
 } from "@headlessui/react"
-import { Label } from "./label"
+
+import { cn } from "@/utils/classname"
+import { inter } from "@/utils/fonts"
+
 import { InputErrorMessage } from "./input-error-message"
+import { Label } from "./label"
 
 export type TComboBoxOption<T> = {
     value: T

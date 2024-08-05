@@ -1,13 +1,15 @@
+import { useQuery } from "@tanstack/react-query"
+import Link from "next/link"
+
 import { SkillsApi } from "@/api/skills/skills.api"
+import { Button } from "@/components/button"
 import { PageError } from "@/components/page-error"
 import { Shimmer } from "@/components/shimmer"
 import { RootLayout } from "@/layouts/root-layout"
-import { useQuery } from "@tanstack/react-query"
-import { RequestsTable } from "./components/requests-table"
-import { Button } from "@/components/button"
-import Link from "next/link"
 import { ROUTES } from "@/routes"
 import { useGlobalStore } from "@/store/global-store"
+
+import { RequestsTable } from "./components/requests-table"
 
 export const Requests = () => {
     const isSuperUser = useGlobalStore((store) => store.user?.roles.super_user)

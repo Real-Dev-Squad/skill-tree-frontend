@@ -1,5 +1,10 @@
 import { zodResolver } from "@hookform/resolvers/zod"
+import { useMutation, useQueryClient } from "@tanstack/react-query"
+import { AxiosError } from "axios"
+import { useRouter } from "next/router"
 import { Controller, useForm } from "react-hook-form"
+import toast from "react-hot-toast"
+import { z } from "zod"
 
 import { SkillsApi } from "@/api/skills"
 import { BackButton } from "@/components/back-button"
@@ -9,11 +14,7 @@ import { Textarea } from "@/components/textarea"
 import { RootLayout } from "@/layouts/root-layout"
 import { ROUTES } from "@/routes"
 import { toErrorMessage } from "@/utils/to-error-message"
-import { useMutation, useQueryClient } from "@tanstack/react-query"
-import { AxiosError } from "axios"
-import { useRouter } from "next/router"
-import toast from "react-hot-toast"
-import { z } from "zod"
+
 import { RdsUsersCombobox } from "./components/rds-users-combobox"
 import { SkillListCombobox } from "./components/skill-list-combobox"
 
@@ -49,7 +50,7 @@ const EndorsementForm = () => {
 
             push(ROUTES.requests)
         },
-        onError: (error: AxiosError<any>) => {
+        onError: (error: AxiosError<unknown>) => {
             toast.error(toErrorMessage(error))
         },
     })

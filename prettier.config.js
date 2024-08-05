@@ -5,6 +5,6 @@ const config = {
     semi: false,
     printWidth: 120,
     plugins: ["prettier-plugin-tailwindcss"],
-};
+}
 
-module.exports = config;
+module.exports = config

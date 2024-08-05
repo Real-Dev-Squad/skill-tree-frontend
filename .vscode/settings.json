@@ -1,0 +1,66 @@
+{
+    /**
+    Editor rules
+    ------------
+  */
+    "editor.formatOnSave": true,
+    "editor.tabSize": 4,
+    "editor.insertSpaces": false,
+    "prettier.tabWidth": 4,
+    "prettier.printWidth": 120,
+    "editor.rulers": [
+        {
+            "column": 120
+        }
+    ],
+    /**
+    Formatters
+    ------------
+  */
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "[javascript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[typescript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[javascriptreact]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[typescriptreact]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "prettier.requireConfig": true,
+    /**
+    New Lines
+    ------------
+  */
+    "files.eol": "\n",
+    "files.insertFinalNewline": true,
+    /**
+    Linting
+    ------------
+  */
+    "eslint.run": "onSave",
+    "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": "always"
+    },
+    /**
+    Miscelaneous
+    ------------
+  */
+    "typescript.tsdk": "node_modules/typescript/lib",
+    /**
+    TailwindCSS
+    ------------
+  */
+    "tailwindCSS.experimental.classRegex": [
+        ["cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"],
+        ["cx\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)"]
+    ],
+    "[jsonc]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "editor.fontFamily": "Office Code Pro, Menlo, Monaco, 'Courier New', monospace",
+    "editor.fontSize": 13
+}

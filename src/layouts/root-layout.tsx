@@ -1,5 +1,5 @@
-import { SmallScreenWarning } from "@/components/small-screen-warning"
 import { Navbar } from "@/components/navbar"
+import { SmallScreenWarning } from "@/components/small-screen-warning"
 
 type Props = {
     children: React.ReactNode

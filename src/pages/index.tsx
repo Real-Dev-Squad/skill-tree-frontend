@@ -1,5 +1,6 @@
-import { ROUTES } from "@/routes"
 import Link from "next/link"
+
+import { ROUTES } from "@/routes"
 
 const Homepage = () => {
     return (

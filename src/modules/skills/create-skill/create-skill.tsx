@@ -1,20 +1,19 @@
 import { zodResolver } from "@hookform/resolvers/zod"
+import { useMutation, useQueryClient } from "@tanstack/react-query"
+import { AxiosError } from "axios"
+import { useRouter } from "next/router"
 import { Controller, useForm } from "react-hook-form"
+import toast from "react-hot-toast"
+import { z } from "zod"
 
 import { SkillsApi } from "@/api/skills"
+import { SkillTypeEnum } from "@/api/skills/skills.enum"
 import { BackButton } from "@/components/back-button"
 import { Button } from "@/components/button"
 import { Form } from "@/components/form"
-import { Textarea } from "@/components/textarea"
+import { Input } from "@/components/input"
 import { RootLayout } from "@/layouts/root-layout"
 import { ROUTES } from "@/routes"
-import { useMutation, useQueryClient } from "@tanstack/react-query"
-import { useRouter } from "next/router"
-import toast from "react-hot-toast"
-import { z } from "zod"
-import { Input } from "@/components/input"
-import { SkillTypeEnum } from "@/api/skills/skills.enum"
-import { AxiosError } from "axios"
 import { toErrorMessage } from "@/utils/to-error-message"
 
 const SKILL_NAME_REQUIRED_ERROR = "Please enter a skill name"
@@ -45,7 +44,7 @@ const EndorsementForm = () => {
 
             push(ROUTES.requests)
         },
-        onError: (error: AxiosError<any>) => {
+        onError: (error: AxiosError<unknown>) => {
             toast.error(toErrorMessage(error))
         },
     })

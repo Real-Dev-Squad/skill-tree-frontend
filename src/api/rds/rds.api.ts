@@ -1,4 +1,5 @@
 import { rdsClient } from "@/utils/client"
+
 import { GetAllRdsUsersReqDto, GetAllRdsUsersResDto, RdsUserSelfResDto } from "./rds.dto"
 
 export class RdsApi {

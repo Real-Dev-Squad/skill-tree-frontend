@@ -17,7 +17,7 @@ export const AvatarGroup = ({ profiles }: AvatarGroupProps) => {
         <div className="flex items-center gap-2">
             <div className="flex -space-x-2">
                 {visibleProfiles.map((profile, index) => (
-                    <div className="relative" style={{ zIndex: `${30 - index}` }}>
+                    <div key={index} className="relative" style={{ zIndex: `${30 - index}` }}>
                         <Avatar
                             size="sm"
                             alt={profile.name}

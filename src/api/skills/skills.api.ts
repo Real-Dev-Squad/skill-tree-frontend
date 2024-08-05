@@ -1,4 +1,5 @@
 import { client } from "@/utils/client"
+
 import * as Dto from "./skills.dto"
 export class SkillsApi {
     public static async getAllPendingSkillRequests(): Promise<Dto.GetAllPendingSkillRequestsResDto> {

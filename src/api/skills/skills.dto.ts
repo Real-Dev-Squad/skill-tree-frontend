@@ -1,5 +1,6 @@
 import { TEndorsement } from "../common/endosement.types"
 import { MinimalUser } from "../common/minimal-user.types"
+
 import { SkillTypeEnum, UserSkillStatusEnum } from "./skills.enum"
 import { TCreteEndorsementBody } from "./skills.types"
 

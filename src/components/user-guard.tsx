@@ -1,11 +1,14 @@
+import { useEffect } from "react"
+
+import { useQuery } from "@tanstack/react-query"
+import { usePathname } from "next/navigation"
+
 import { RdsApi } from "@/api/rds"
 import { ROUTES } from "@/routes"
 import { TGlobalStoreUser, useGlobalStore } from "@/store/global-store"
-import { useQuery } from "@tanstack/react-query"
-import { usePathname } from "next/navigation"
-import { useEffect } from "react"
-import { PageError } from "./page-error"
+
 import { Loader } from "./loader"
+import { PageError } from "./page-error"
 
 type Props = {
     children: React.ReactNode
@@ -40,7 +43,7 @@ export const UserGuard = ({ children }: Props) => {
         }
 
         setGlobalStore({ user })
-    }, [data])
+    }, [data, setGlobalStore])
 
     if (isLoading) {
         return (

@@ -1,5 +1,7 @@
-import { config } from "@/config"
 import Link from "next/link"
+
+import { config } from "@/config"
+
 import { SignInWithRds } from "./signin-with-rds"
 
 type NavLinksList = {

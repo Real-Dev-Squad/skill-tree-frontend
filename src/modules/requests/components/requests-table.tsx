@@ -1,16 +1,18 @@
-import { MinimalUser } from "@/api/common/minimal-user.types"
-import { GetAllPendingSkillRequestsResDto } from "@/api/skills/skills.dto"
-import { Button } from "@/components/button"
-import { cn } from "@/utils/classname"
-import { EndorsementsGroup, TFormattedEndorsement } from "./endorsements-group"
 import { useMutation, useQueryClient } from "@tanstack/react-query"
-import { SkillsApi } from "@/api/skills"
-import { UserSkillStatusEnum } from "@/api/skills/skills.enum"
-import toast from "react-hot-toast"
-import { toErrorMessage } from "@/utils/to-error-message"
 import { AxiosError } from "axios"
+import toast from "react-hot-toast"
+
+import { MinimalUser } from "@/api/common/minimal-user.types"
 import { TUserDetails } from "@/api/common/user.types"
+import { SkillsApi } from "@/api/skills"
+import { GetAllPendingSkillRequestsResDto } from "@/api/skills/skills.dto"
+import { UserSkillStatusEnum } from "@/api/skills/skills.enum"
+import { Button } from "@/components/button"
 import { useGlobalStore } from "@/store/global-store"
+import { cn } from "@/utils/classname"
+import { toErrorMessage } from "@/utils/to-error-message"
+
+import { EndorsementsGroup, TFormattedEndorsement } from "./endorsements-group"
 import { RequestTableEmptyState } from "./request-table-empty-state"
 
 type CellProps = {
@@ -68,7 +70,7 @@ const RequestActions = ({ skillId, endorseId }: RequestActionsProps) => {
             queryClient.invalidateQueries({ queryKey: ["SkillsApi.getAllPendingSkillRequests"] })
             toast.success("Skill Request approved")
         },
-        onError: (error: AxiosError<any>) => {
+        onError: (error: AxiosError<unknown>) => {
             toast.error(toErrorMessage(error))
         },
     })
@@ -80,7 +82,7 @@ const RequestActions = ({ skillId, endorseId }: RequestActionsProps) => {
             queryClient.invalidateQueries({ queryKey: ["SkillsApi.getAllPendingSkillRequests"] })
             toast.success("Skill Request rejected")
         },
-        onError: (error: AxiosError<any>) => {
+        onError: (error: AxiosError<unknown>) => {
             toast.error(toErrorMessage(error))
         },
     })
@@ -159,8 +161,8 @@ export const RequestsTable = ({ data }: RequestsTableProps) => {
         <table className="w-full text-left">
             <TableHeader />
 
-            {formattedData.map((request) => (
-                <tr>
+            {formattedData.map((request, index) => (
+                <tr key={index}>
                     <Td>{request.endorse.name}</Td>
                     <Td>{request.skillName}</Td>
                     <Td>

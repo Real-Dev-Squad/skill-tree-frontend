@@ -1,8 +1,9 @@
+import Image from "next/image"
+import { useRouter } from "next/navigation"
+
 import { config } from "@/config"
 import { ROUTES } from "@/routes"
 import { useGlobalStore } from "@/store/global-store"
-import Image from "next/image"
-import { useRouter } from "next/navigation"
 
 export const SignInWithRds = () => {
     const { push } = useRouter()

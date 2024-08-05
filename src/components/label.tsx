@@ -1,5 +1,6 @@
-import { cn } from "@/utils/classname"
 import { Label as BaseLabel } from "@headlessui/react"
+
+import { cn } from "@/utils/classname"
 
 type Props = {
     className?: string

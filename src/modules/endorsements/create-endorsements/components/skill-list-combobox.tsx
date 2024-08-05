@@ -1,10 +1,8 @@
-import { RdsApi } from "@/api/rds"
+import { useQuery } from "@tanstack/react-query"
+
 import { SkillsApi } from "@/api/skills"
 import { Combobox, TComboBoxOption } from "@/components/combobox"
 import { Shimmer } from "@/components/shimmer"
-import { debounce } from "@/utils/debounce"
-import { useQuery } from "@tanstack/react-query"
-import { useState } from "react"
 
 type TOption = TComboBoxOption<number>
 

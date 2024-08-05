@@ -1,6 +1,9 @@
-import { Input as BaseInput, Field } from "@headlessui/react"
-import { cn } from "@/utils/classname"
 import { HTMLInputTypeAttribute } from "react"
+
+import { Input as BaseInput, Field } from "@headlessui/react"
+
+import { cn } from "@/utils/classname"
+
 import { InputErrorMessage } from "./input-error-message"
 import { Label } from "./label"
 
