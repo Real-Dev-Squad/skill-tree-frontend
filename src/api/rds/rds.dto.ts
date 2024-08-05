@@ -1,13 +1,16 @@
+export type TRdsUserRoles = {
+    archived: boolean
+    in_discord: boolean
+    member: boolean
+    super_user?: boolean
+}
+
 export type RdsUserSelfResDto = {
     id: string
     incompleteUserDetails: boolean
     discordJoinedAt: string
     discordId: string
-    roles: {
-        archived: boolean
-        in_discord: boolean
-        member: boolean
-    }
+    roles: TRdsUserRoles
     linkedin_id: boolean
     picture?: {
         url: string
