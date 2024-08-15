@@ -3,7 +3,12 @@
 @tailwind utilities;
 
 :root {
-    padding: 0;
     margin: 0;
-    background-color: #f9fafb;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+html {
+    @apply bg-gray-50;
 }

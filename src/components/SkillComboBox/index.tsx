@@ -1,32 +1,33 @@
-import Image from "next/image";
-import { Combobox, Transition } from "@headlessui/react";
-import React, { useState, Fragment } from "react";
+import React, { useState, Fragment } from "react"
+
+import { Combobox, Transition } from "@headlessui/react"
+import Image from "next/image"
 
 type OptionTypes = {
-    id: number;
-    skill: string;
-};
+    id: number
+    skill: string
+}
 
 type ComboboxProps = {
-    placeholder: string;
-    options: OptionTypes[];
-    onChange?: (value: OptionTypes) => void;
-    value?: OptionTypes;
-    handleAddSkill?: () => void;
-};
+    placeholder: string
+    options: OptionTypes[]
+    onChange?: (value: OptionTypes) => void
+    value?: OptionTypes
+    handleAddSkill?: () => void
+}
 
 const SkillCombobox = ({ placeholder, options, onChange, value, handleAddSkill }: ComboboxProps) => {
-    const [query, setQuery] = useState<string>("");
+    const [query, setQuery] = useState<string>("")
 
     const filteredSkills = !query
         ? options
-        : options.filter((option) => option?.skill?.toLowerCase().includes(query.toLowerCase()));
+        : options.filter((option) => option?.skill?.toLowerCase().includes(query.toLowerCase()))
 
     return (
         <Combobox value={value} onChange={onChange}>
             <div className="relative">
                 <Combobox.Input
-                    className="border rounded-lg border-blue bg-black/5 font-normal py-2.5 px-4 text-sm/6 h-11 w-64 focus:outline-none data-[focus]:outline-2 data-[focus]:-outline-offset-2 data-[focus]:outline-white/25"
+                    className="border-blue h-11 w-64 rounded-lg border bg-black/5 px-4 py-2.5 text-sm/6 font-normal focus:outline-none data-[focus]:outline-2 data-[focus]:-outline-offset-2 data-[focus]:outline-white/25"
                     displayValue={(option: OptionTypes) => option?.skill}
                     onChange={(event) => setQuery(event.target.value)}
                     placeholder={placeholder}
@@ -41,12 +42,12 @@ const SkillCombobox = ({ placeholder, options, onChange, value, handleAddSkill }
                     leaveTo="opacity-0"
                     afterLeave={() => setQuery("")}
                 >
-                    <Combobox.Options className="absolute mt-1 rounded-lg border border-gray bg-white/5 [--anchor-gap:var(--spacing-1)] empty:invisible max-h-60 w-full overflow-auto bg-white shadow-custom-1">
+                    <Combobox.Options className="border-gray shadow-custom-1 absolute mt-1 max-h-60 w-full overflow-auto rounded-lg border bg-white bg-white/5 [--anchor-gap:var(--spacing-1)] empty:invisible">
                         {filteredSkills?.length === 0 && query !== "" ? (
-                            <div className="group flex items-center bg-white border-b border-lightgray gap-2 p-4 select-none cursor-pointer hover:bg-blue-200">
+                            <div className="border-lightgray group flex cursor-pointer select-none items-center gap-2 border-b bg-white p-4 hover:bg-blue-200">
                                 <span
                                     onClick={handleAddSkill}
-                                    className="flex items-center gap-2 text-sm font-medium text-gray-300 capitalize"
+                                    className="flex items-center gap-2 text-sm font-medium capitalize text-gray-300"
                                 >
                                     <Image src="/addicon.svg" alt="add skill icon" height={16} width={16} />
                                     Add New Skill
@@ -57,9 +58,9 @@ const SkillCombobox = ({ placeholder, options, onChange, value, handleAddSkill }
                                 <Combobox.Option
                                     key={option?.id}
                                     value={option}
-                                    className="group flex items-center bg-white border border-b border-lightgray gap-2 p-4 select-none cursor-pointer hover:bg-blue-200"
+                                    className="border-lightgray group flex cursor-pointer select-none items-center gap-2 border border-b bg-white p-4 hover:bg-blue-200"
                                 >
-                                    <span className="text-sm font-normal text-darkblueblack capitalize">
+                                    <span className="text-darkblueblack text-sm font-normal capitalize">
                                         {option?.skill}
                                     </span>
                                 </Combobox.Option>
@@ -69,7 +70,7 @@ const SkillCombobox = ({ placeholder, options, onChange, value, handleAddSkill }
                 </Transition>
             </div>
         </Combobox>
-    );
-};
+    )
+}
 
-export default SkillCombobox;
+export default SkillCombobox
