@@ -1,7 +1,8 @@
 import { useQuery } from "@tanstack/react-query"
 import Link from "next/link"
 
-import { SkillsApi } from "@/api/skills/skills.api"
+import { SkillsApi } from "@/api/skills"
+import { UserSkillStatusEnum } from "@/api/skills/skills.enum"
 import { Button } from "@/components/button"
 import { PageError } from "@/components/page-error"
 import { Shimmer } from "@/components/shimmer"
@@ -9,15 +10,15 @@ import { RootLayout } from "@/layouts/root-layout"
 import { ROUTES } from "@/routes"
 import { useGlobalStore } from "@/store/global-store"
 
-import { RequestsTable } from "./components/requests-table"
-import { RequestsTabs } from "./components/requests-tabs"
+import { RequestsTable } from "../requests/components/requests-table"
+import { RequestsTabs } from "../requests/components/requests-tabs"
 
-export const Requests = () => {
+export const PendingRequests = () => {
     const isSuperUser = useGlobalStore((store) => store.user?.roles.super_user)
 
     const { data, isLoading, isError } = useQuery({
         queryKey: ["SkillsApi.getAllPendingSkillRequests"],
-        queryFn: () => SkillsApi.getAllPendingSkillRequests(),
+        queryFn: () => SkillsApi.getAllPendingSkillRequests({ status: UserSkillStatusEnum.PENDING }),
     })
 
     if (isLoading) {
@@ -50,7 +51,7 @@ export const Requests = () => {
                     </div>
 
                     <div className="flex items-center gap-4 pb-6">
-                        <h1 className="flex-1 text-2xl font-semibold text-gray-800">All requests</h1>
+                        <h1 className="flex-1 text-2xl font-semibold text-gray-800">Pending requests</h1>
 
                         {isSuperUser && (
                             <Button asChild size="xs" variant="ghost" className="text-gray-500">

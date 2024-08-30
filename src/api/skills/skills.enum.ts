@@ -3,7 +3,7 @@ export enum SkillTypeEnum {
 }
 
 export enum UserSkillStatusEnum {
-    APPROVED,
-    REJECTED,
-    PENDING,
+    APPROVED = "APPROVED",
+    REJECTED = "REJECTED",
+    PENDING = "PENDING",
 }

@@ -2,8 +2,10 @@ import { client } from "@/utils/client"
 
 import * as Dto from "./skills.dto"
 export class SkillsApi {
-    public static async getAllPendingSkillRequests(): Promise<Dto.GetAllPendingSkillRequestsResDto> {
-        const { data } = await client.get("/v1/skills/requests")
+    public static async getAllPendingSkillRequests(
+        params?: Dto.GetAllPendingSkillsReqDto
+    ): Promise<Dto.GetAllPendingSkillsResDto> {
+        const { data } = await client.get("/v1/skills/requests", { params })
         return data
     }
 

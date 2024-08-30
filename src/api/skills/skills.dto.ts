@@ -8,10 +8,15 @@ export type SkillRequests = {
     skillId: number
     skillName: string
     endorseId: string
+    status: UserSkillStatusEnum
     endorsements: TEndorsement[]
 }
 
-export type GetAllPendingSkillRequestsResDto = {
+export type GetAllPendingSkillsReqDto = {
+    status?: UserSkillStatusEnum
+}
+
+export type GetAllPendingSkillsResDto = {
     requests: SkillRequests[]
     users: MinimalUser[]
 }
