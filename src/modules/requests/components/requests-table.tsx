@@ -5,7 +5,7 @@ import toast from "react-hot-toast"
 import { MinimalUser } from "@/api/common/minimal-user.types"
 import { TUserDetails } from "@/api/common/user.types"
 import { SkillsApi } from "@/api/skills"
-import { GetAllPendingSkillRequestsResDto } from "@/api/skills/skills.dto"
+import { GetAllPendingSkillsResDto } from "@/api/skills/skills.dto"
 import { UserSkillStatusEnum } from "@/api/skills/skills.enum"
 import { Button } from "@/components/button"
 import { useGlobalStore } from "@/store/global-store"
@@ -21,7 +21,7 @@ type CellProps = {
 }
 
 const Cell = ({ className, children }: CellProps) => {
-    return <div className={cn("px-2 text-sm font-normal", className)}>{children}</div>
+    return <div className={cn("px-4 text-sm font-normal", className)}>{children}</div>
 }
 
 type CommonProps = {
@@ -36,19 +36,24 @@ const Th = ({ children }: CommonProps) => {
     )
 }
 
-const Td = ({ children }: CommonProps) => {
+type TdProps = CommonProps & {
+    classNames?: Partial<{ td: string; cell: string }>
+}
+
+const Td = ({ children, classNames }: TdProps) => {
     return (
-        <td className="text-sm font-normal text-gray-800">
-            <Cell className="flex h-11 items-center">{children}</Cell>
+        <td className={cn("text-sm font-normal text-gray-800", classNames?.td)}>
+            <Cell className={cn("flex h-11 items-center", classNames?.cell)}>{children}</Cell>
         </td>
     )
 }
 
 const TableHeader = () => {
     return (
-        <thead className="border-y border-gray-100">
+        <thead className="border-b border-gray-200 bg-gray-50">
             <Th>Name</Th>
             <Th>Skill</Th>
+            <Th>Skill status</Th>
             <Th>Endorsements</Th>
             <Th />
         </thead>
@@ -58,9 +63,10 @@ const TableHeader = () => {
 type RequestActionsProps = {
     skillId: number
     endorseId: string
+    skillStatus: UserSkillStatusEnum
 }
 
-const RequestActions = ({ skillId, endorseId }: RequestActionsProps) => {
+const RequestActions = ({ skillId, endorseId, skillStatus }: RequestActionsProps) => {
     const queryClient = useQueryClient()
 
     const approveRequestsMutation = useMutation({
@@ -86,6 +92,10 @@ const RequestActions = ({ skillId, endorseId }: RequestActionsProps) => {
             toast.error(toErrorMessage(error))
         },
     })
+
+    if (skillStatus !== UserSkillStatusEnum.PENDING) {
+        return <div className="text-gray-500">--</div>
+    }
 
     return (
         <div className="flex items-center gap-2">
@@ -115,11 +125,12 @@ type TFormattedData = {
     skillId: number
     skillName: string
     endorse: TUserDetails
+    skillStatus: UserSkillStatusEnum
     endorsements: TFormattedEndorsement[]
 }
 
 type RequestsTableProps = {
-    data: GetAllPendingSkillRequestsResDto
+    data: GetAllPendingSkillsResDto
 }
 
 export const RequestsTable = ({ data }: RequestsTableProps) => {
@@ -147,6 +158,7 @@ export const RequestsTable = ({ data }: RequestsTableProps) => {
         })),
         skillId: request.skillId,
         skillName: request.skillName,
+        skillStatus: request.status,
     }))
 
     if (!formattedData.length) {
@@ -158,21 +170,30 @@ export const RequestsTable = ({ data }: RequestsTableProps) => {
     }
 
     return (
-        <table className="w-full text-left">
-            <TableHeader />
+        <div className="overflow-hidden rounded-lg border border-gray-200">
+            <table className="w-full text-left">
+                <TableHeader />
 
-            {formattedData.map((request, index) => (
-                <tr key={index}>
-                    <Td>{request.endorse.name}</Td>
-                    <Td>{request.skillName}</Td>
-                    <Td>
-                        <EndorsementsGroup endorsements={request.endorsements} />
-                    </Td>
-                    <Td>
-                        {isSuperUser && <RequestActions skillId={request.skillId} endorseId={request.endorse.id} />}
-                    </Td>
-                </tr>
-            ))}
-        </table>
+                {formattedData.map((request, index) => (
+                    <tr key={index} className="h-12 border-b border-gray-200 last:border-none">
+                        <Td>{request.endorse.name}</Td>
+                        <Td>{request.skillName}</Td>
+                        <Td classNames={{ cell: "capitalize" }}>{request.skillStatus.toLowerCase()}</Td>
+                        <Td>
+                            <EndorsementsGroup endorsements={request.endorsements} />
+                        </Td>
+                        <Td>
+                            {isSuperUser && (
+                                <RequestActions
+                                    skillId={request.skillId}
+                                    endorseId={request.endorse.id}
+                                    skillStatus={request.skillStatus}
+                                />
+                            )}
+                        </Td>
+                    </tr>
+                ))}
+            </table>
+        </div>
     )
 }
