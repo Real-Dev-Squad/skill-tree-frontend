@@ -29,11 +29,7 @@ export const SkillListCombobox = ({ label, value, placeholder, errorMessage, onC
         queryFn: SkillsApi.getAllSkills,
     })
 
-    const options =
-        data?.map<TOption>((skill) => ({
-            value: skill.id,
-            label: skill.name,
-        })) ?? []
+    const options = data?.map<TOption>((skill) => ({ value: skill.id, label: skill.name })) ?? []
 
     const selectedOption = options.find((option) => option.value === value) ?? null
 
