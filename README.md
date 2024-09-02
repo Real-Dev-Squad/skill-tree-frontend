@@ -22,7 +22,7 @@ Display the skills a user has and the endorsements created for adding new skills
 
 #### Node.js
 - Version - 20.11.1
-- Install Node.js using the following command below:
+- Install Node.js using the following command:
     ```sh
       volta install node@20.11.1
     ``` 
@@ -32,7 +32,7 @@ Display the skills a user has and the endorsements created for adding new skills
 ```
 npm i
 ```
-- Run development server
+- Run the development server
 ```
 npm run dev
 ```
