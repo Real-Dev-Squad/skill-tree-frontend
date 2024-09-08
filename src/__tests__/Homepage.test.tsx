@@ -1,0 +1,9 @@
+import { render, screen } from "@testing-library/react"
+import { expect, test } from "vitest"
+
+import Homepage from "@/pages"
+
+test("HomePage", () => {
+    render(<Homepage />)
+    expect(screen.getByRole("heading", { level: 1, name: "Welcome to Skilltree" })).toBeDefined()
+})
