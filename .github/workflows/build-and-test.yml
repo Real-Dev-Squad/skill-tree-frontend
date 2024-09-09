@@ -39,6 +39,5 @@ jobs:
             - name: Build
               run: npm run build
 
-            # TODO : Uncomment the following lines after adding tests
-            # - name: Test
-            #   run: npm test
+            - name: Test
+              run: npm test
