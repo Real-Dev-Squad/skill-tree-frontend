@@ -10,7 +10,7 @@ Display the skills a user has and the endorsements created for adding new skills
 ## Tech Stack:
 - [NextJs v14.24 (Reactjs)](https://nextjs.org/)
 - [react-query](https://tanstack.com/query/v3/)
-- [Jest](https://jestjs.io/)
+- [Vitest](https://vitest.dev/)
 - [Msw](https://mswjs.io/)
 
 ## Setup and running locally
@@ -35,5 +35,9 @@ npm i
 - Run the development server
 ```
 npm run dev
+```
+- To run tests
+```
+npm run test
 ```
 
