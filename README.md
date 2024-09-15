@@ -28,16 +28,31 @@ Display the skills a user has and the endorsements created for adding new skills
     ``` 
 
 ### Setup
-- Install local dependencies
-```
-npm i
-```
-- Run the development server
-```
-npm run dev
-```
-- To run tests
-```
-npm run test
-```
+
+1. **Environment Setup**:
+   - Create a file named `env.local` in the root directory.
+   - Copy the contents of `env.sample` and paste them into `env.local`.
+
+2. **Hosts File Update**:
+   - Open your hosts file. You can follow this [guide to open the hosts file](https://docs.rackspace.com/docs/modify-your-hosts-file).
+   - Add the following line to the end of the file:
+     ```plaintext
+     127.0.0.1       dev.realdevsquad.com
+     ```
+   - Save the changes and exit.
+
+3. **Install Dependencies**:
+    ```sh
+    npm i
+    ```
+
+4. **Run the Development Server**:
+    ```sh
+    npm run dev
+    ```
+
+5. **Run Tests**:
+    ```sh
+    npm run test
+    ```
 
