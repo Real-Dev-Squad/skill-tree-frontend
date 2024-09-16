@@ -33,13 +33,8 @@ Display the skills a user has and the endorsements created for adding new skills
    - Create a file named `env.local` in the root directory.
    - Copy the contents of `env.sample` and paste them into `env.local`.
 
-2. **Hosts File Update**:
-   - Open your hosts file. You can follow this [guide to open the hosts file](https://docs.rackspace.com/docs/modify-your-hosts-file).
-   - Add the following line to the end of the file:
-     ```plaintext
-     127.0.0.1       dev.realdevsquad.com
-     ```
-   - Save the changes and exit.
+2. **Setup locally**:
+   - Setup `dev.realdevsquad.com` for development using the instructions here - [Avoiding CORS during development](https://github.com/Real-Dev-Squad/website-code-docs/tree/main/docs/dev/https-dev-url-cors)
 
 3. **Install Dependencies**:
     ```sh
@@ -50,8 +45,15 @@ Display the skills a user has and the endorsements created for adding new skills
     ```sh
     npm run dev
     ```
+5. **Go to Website**:
+   https://dev.realdevsquad.com
 
-5. **Run Tests**:
+   ```sh
+   https://dev.realdevsquad.com
+   ```
+      
+   
+7. **Run Tests**:
     ```sh
     npm run test
     ```
