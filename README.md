@@ -46,14 +46,12 @@ Display the skills a user has and the endorsements created for adding new skills
     npm run dev
     ```
 5. **Go to Website**:
-   https://dev.realdevsquad.com
+   https://dev.realdevsquad.com      
 
-   ```sh
-   https://dev.realdevsquad.com
-   ```
-      
-   
-7. **Run Tests**:
+### Testing
+
+- To run tests run the following command:
+  
     ```sh
     npm run test
     ```
