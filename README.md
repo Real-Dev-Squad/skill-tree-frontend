@@ -28,16 +28,31 @@ Display the skills a user has and the endorsements created for adding new skills
     ``` 
 
 ### Setup
-- Install local dependencies
-```
-npm i
-```
-- Run the development server
-```
-npm run dev
-```
-- To run tests
-```
-npm run test
-```
+
+1. **Environment Setup**:
+   - Create a file named `env.local` in the root directory.
+   - Copy the contents of `env.sample` and paste them into `env.local`.
+
+2. **Setup locally**:
+   - Setup `dev.realdevsquad.com` for development using the instructions here - [Avoiding CORS during development](https://github.com/Real-Dev-Squad/website-code-docs/tree/main/docs/dev/https-dev-url-cors)
+
+3. **Install Dependencies**:
+    ```sh
+    npm i
+    ```
+
+4. **Run the Development Server**:
+    ```sh
+    npm run dev
+    ```
+5. **Go to Website**:
+   https://dev.realdevsquad.com      
+
+### Testing
+
+- To run tests run the following command:
+  
+    ```sh
+    npm run test
+    ```
 
