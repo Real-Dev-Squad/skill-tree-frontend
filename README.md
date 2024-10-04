@@ -55,4 +55,8 @@ Display the skills a user has and the endorsements created for adding new skills
     ```sh
     npm run test
     ```
+- To generate coverage report use the command below:
 
+  ```sh
+  npm run test:coverage
+  ```
