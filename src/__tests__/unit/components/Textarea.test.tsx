@@ -1,7 +1,7 @@
 import { cleanup, fireEvent, render } from "@testing-library/react"
 import { afterEach, describe, expect, it, vi } from "vitest"
 
-import { Textarea } from "@/components/textarea"; // Adjust the import path as necessary
+import { Textarea } from "@/components/textarea" // Adjust the import path as necessary
 
 afterEach(() => {
     cleanup()
