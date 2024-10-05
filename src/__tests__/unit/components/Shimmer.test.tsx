@@ -1,5 +1,5 @@
-import { render } from "@testing-library/react"
-import { describe, expect, it, vi } from "vitest"
+import { cleanup, render } from "@testing-library/react"
+import { afterEach, describe, expect, it, vi } from "vitest"
 
 import { Shimmer } from "@/components/shimmer" // Adjust the import path as necessary
 // Mock the cn function
@@ -9,6 +9,9 @@ vi.mock("@/utils/classname", () => ({
 }))
 
 describe("Shimmer component", () => {
+    afterEach(() => {
+        cleanup()
+    })
     it("renders without crashing", () => {
         const { container } = render(<Shimmer />)
         expect(container.firstChild).toBeDefined()
