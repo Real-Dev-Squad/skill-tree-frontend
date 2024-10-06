@@ -1,12 +1,7 @@
 import { cleanup, render } from "@testing-library/react"
-import { afterEach, describe, expect, it, vi } from "vitest"
+import { afterEach, describe, expect, it } from "vitest"
 
 import { Shimmer } from "@/components/shimmer" // Adjust the import path as necessary
-// Mock the cn function
-
-vi.mock("@/utils/classname", () => ({
-    cn: (...args: any[]) => args.filter(Boolean).join(" "),
-}))
 
 describe("Shimmer component", () => {
     afterEach(() => {
