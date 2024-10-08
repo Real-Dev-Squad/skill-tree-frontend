@@ -7,7 +7,7 @@ describe("Shimmer component", () => {
     afterEach(() => {
         cleanup()
     })
-    it("renders without crashing", () => {
+    it("renders", () => {
         const { container } = render(<Shimmer />)
         expect(container.firstChild).toBeDefined()
     })
