@@ -35,7 +35,7 @@ export const Navbar = () => {
                 <NavLinksList className="flex items-center">
                     <NavLink href={config.welcomeSiteUrl}>Welcome</NavLink>
                     <NavLink href={config.membersSiteUrl}>Members</NavLink>
-                    <NavLink href={config.membersSiteUrl}>Status</NavLink>
+                    <NavLink href={config.statusSiteUrl}>Status</NavLink>
                 </NavLinksList>
 
                 <div className="ml-auto">
