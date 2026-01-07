@@ -9,7 +9,6 @@ const configSchema = z.object({
     membersSiteUrl: z.string(),
     welcomeSiteUrl: z.string(),
     wwwSiteUrl: z.string(),
-    mySiteUrl: z.string(),
 })
 
 type TConfig = z.infer<typeof configSchema>
@@ -23,7 +22,6 @@ export const config = {
     membersSiteUrl: process.env.NEXT_PUBLIC_MEMBERS_SITE_URL,
     welcomeSiteUrl: process.env.NEXT_PUBLIC_WELCOME_SITE_URL,
     wwwSiteUrl: process.env.NEXT_PUBLIC_WWW_SITE_URL,
-    mySiteUrl: process.env.NEXT_PUBLIC_MY_SITE_URL,
 } as TConfig
 
 /**
