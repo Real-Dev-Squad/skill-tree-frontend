@@ -4,7 +4,7 @@ import { GetAllRdsUsersReqDto, GetAllRdsUsersResDto, RdsUserSelfResDto } from ".
 
 export class RdsApi {
     public static async getCurrentUserData(): Promise<RdsUserSelfResDto> {
-        const { data } = await rdsClient.get("/users/self")
+        const { data } = await rdsClient.get("/users?profile=true")
         return data
     }
 
